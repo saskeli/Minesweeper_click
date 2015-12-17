@@ -4,4 +4,4 @@
 
 pvm        | aika | kohde |
 -----------|------|-------|
-2015-12-17 | 3h   | Gittiin tutustuminen, projektin luonti, aihemäärittely ja markdownin opiskelu |
+2015-12-17 | 2h   | Gittiin tutustuminen, projektin luonti, aihemäärittely ja markdownin opiskelu |
