@@ -1,5 +1,5 @@
 # Minesweeper_click
-Minesweeper clone but based on clicks and not time. [School project](https://github.com/javaLabra/Joululabra-2015).
+Minesweeper clone but based on clicks instead of time. [School project](https://github.com/javaLabra/Joululabra-2015).
 
 ## Linkkejä
 
