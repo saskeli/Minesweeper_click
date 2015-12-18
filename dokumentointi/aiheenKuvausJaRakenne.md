@@ -10,7 +10,7 @@ Lisäfeatureita tulee jos on aikaa kurssin edetessä.
 ## Käyttäjät
 Pelaaja
 
-## Toiminot
+## Toiminnot
 * Katso tuloksia.
 * Käynnistä peli (oletusarvoisesti käynnistyy uudella pelillä [ainakin jollen ehdi tehdä savestateja])
 * Vaihda pelikentän tyyppiä (eli kokoa)
