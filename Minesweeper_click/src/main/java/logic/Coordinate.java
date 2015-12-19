@@ -16,7 +16,20 @@ public class Coordinate {
     public int getRow() {
         return row;
     }
-
+    
+    public Coordinate[] getSurroundingCoords() {
+        Coordinate[] surrounding = new Coordinate[8];
+        surrounding[0] = new Coordinate(column - 1, row - 1);
+        surrounding[1] = new Coordinate(column - 1, row);
+        surrounding[2] = new Coordinate(column - 1, row + 1);
+        surrounding[3] = new Coordinate(column, row - 1);
+        surrounding[4] = new Coordinate(column, row + 1);
+        surrounding[5] = new Coordinate(column + 1, row - 1);
+        surrounding[6] = new Coordinate(column + 1, row);
+        surrounding[7] = new Coordinate(column + 1, row + 1);
+        return surrounding;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
