@@ -1,23 +1,19 @@
-
-package logic;
+package minesweeper.logic;
 
 import java.util.*;
 
 public class GameGrid {
+
     private final boolean[][][] tiles;
     private boolean started;
     private final int mines;
-    
+
     public GameGrid(int width, int height, int mines) {
-        if (!(mines < width*height)) {
-            this.mines = width * height - 1;
-        } else {
-            this.mines = mines;
-        }
+        this.mines = mines;
         tiles = new boolean[height][width][2];
         this.started = false;
     }
-    
+
     public GameGrid(boolean[][][] tiles) {
         this.tiles = tiles;
         this.started = true;
@@ -37,21 +33,17 @@ public class GameGrid {
     public List<int[]> surroundingValidCoords(int row, int column) {
         int[][] possible = getSurroundingCoords(row, column);
         List<int[]> actual = new ArrayList<>();
-        for (int[] c : possible) {
-            if (isValid(c[0], c[1])) {
-                actual.add(c);
-            }
-        }
+        actual.addAll(Arrays.asList(possible));
         return actual;
     }
-    
+
     public boolean isValid(int row, int column) {
         if (row < 0 || column < 0) {
             return false;
         }
         return tiles.length > row && tiles[0].length > column;
     }
-    
+
     public int surroundingMines(int row, int column) {
         int sum = 0;
         for (int[] c : getSurroundingCoords(row, column)) {
@@ -69,7 +61,7 @@ public class GameGrid {
             return false;
         }
     }
-    
+
     public boolean clear(int row, int column) {
         if (!started) {
             generateTiles(row, column);
@@ -98,8 +90,9 @@ public class GameGrid {
         special.add(coord);
         populateList(mineList, special.size());
         populateTileGrid(mineList, special);
-        if (mines > (tiles.length * tiles[0].length) - special.size()) {
-            addMinesToSpecials(mines - ((tiles.length * tiles[0].length) - special.size()), coord);
+        int extraMines = mines - (tiles.length * tiles[0].length - special.size());
+        if (extraMines > 0) {
+            addMinesToSpecials(extraMines, coord);
         }
     }
 
@@ -126,12 +119,12 @@ public class GameGrid {
                     tiles[i][j][0] = false;
                     tiles[i][j][1] = false;
                 }
-                
+
             }
         }
     }
 
-    public void addMinesToSpecials(int i,  int[] coord) {
+    public void addMinesToSpecials(int i, int[] coord) {
         List<Boolean> mineList = new ArrayList<>();
         int[][] specials = getSurroundingCoords(coord[0], coord[1]);
         for (int j = 0; j < specials.length; j++) {
@@ -169,16 +162,16 @@ public class GameGrid {
         return sb.toString();
     }
 
-    private int[][] getSurroundingCoords(int row, int column) {
+    public int[][] getSurroundingCoords(int row, int column) {
         List<int[]> surroundings = new ArrayList<>();
         if (isValid(row - 1, column - 1)) {
-            surroundings.add(new int[]{row -1, column - 1});
+            surroundings.add(new int[]{row - 1, column - 1});
         }
         if (isValid(row - 1, column)) {
-            surroundings.add(new int[]{row -1, column});
+            surroundings.add(new int[]{row - 1, column});
         }
         if (isValid(row - 1, column + 1)) {
-            surroundings.add(new int[]{row -1, column + 1});
+            surroundings.add(new int[]{row - 1, column + 1});
         }
         if (isValid(row, column - 1)) {
             surroundings.add(new int[]{row, column - 1});
@@ -202,7 +195,7 @@ public class GameGrid {
         return returnable;
     }
 
-    private boolean isOnList(int[] c, List<int[]> special) {
+    public boolean isOnList(int[] c, List<int[]> special) {
         for (int[] s : special) {
             if (s[0] == c[0] && s[1] == c[1]) {
                 return true;
@@ -211,7 +204,7 @@ public class GameGrid {
         return false;
     }
 
-    private String stringRepresentation(boolean[] t) {
+    public String stringRepresentation(boolean[] t) {
         if (t[0]) {
             if (t[1]) {
                 return "¤";
@@ -223,6 +216,5 @@ public class GameGrid {
         }
         return "#";
     }
-    
-    
+
 }
