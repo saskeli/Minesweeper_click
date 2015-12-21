@@ -4,17 +4,17 @@ import java.util.*;
 
 public class GameGrid {
 
-    private final boolean[][][] tiles;
+    private final Tile[][] tiles;
     private boolean started;
     private final int mines;
 
     public GameGrid(int width, int height, int mines) {
         this.mines = mines;
-        tiles = new boolean[height][width][2];
+        tiles = new Tile[height][width];
         this.started = false;
     }
 
-    public GameGrid(boolean[][][] tiles) {
+    public GameGrid(Tile[][] tiles) {
         this.tiles = tiles;
         this.started = true;
         this.mines = -1;
@@ -22,10 +22,10 @@ public class GameGrid {
 
     public int getValue(int row, int column) {
         if (!started) {
-            return 0;
+            return -1;
         }
         if (hasMine(row, column)) {
-            return -1;
+            return 9;
         }
         return surroundingMines(row, column);
     }
@@ -47,7 +47,7 @@ public class GameGrid {
     public int surroundingMines(int row, int column) {
         int sum = 0;
         for (int[] c : getSurroundingCoords(row, column)) {
-            if (tiles[c[0]][c[1]][0]) {
+            if (tiles[c[0]][c[1]].isMine()) {
                 sum += 1;
             }
         }
@@ -56,26 +56,29 @@ public class GameGrid {
 
     public boolean hasMine(int row, int column) {
         try {
-            return tiles[row][column][0];
+            return tiles[row][column].isMine();
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }
     }
 
     public boolean clear(int row, int column) {
+        if (!isValid(row, column)) {
+            return true;
+        }
         if (!started) {
             generateTiles(row, column);
             started = true;
         }
-        boolean[] t = tiles[row][column];
-        t[1] = true;
-        if (t[0]) {
+        Tile t = tiles[row][column];
+        t.setChecked(true);
+        if (t.isMine()) {
             clearMines();
             return false;
         }
         if (surroundingMines(row, column) == 0) {
             for (int[] c : surroundingValidCoords(row, column)) {
-                if (!tiles[c[0]][c[1]][1]) {
+                if (!tiles[c[0]][c[1]].isChecked()) {
                     clear(c[0], c[1]);
                 }
             }
@@ -112,14 +115,11 @@ public class GameGrid {
             for (int j = 0; j < tiles[0].length; j++) {
                 int[] c = {i, j};
                 if (!isOnList(c, special)) {
-                    tiles[i][j][0] = mineList.get(0);
-                    tiles[i][j][1] = false;
+                    tiles[i][j] = new Tile(mineList.get(0), false);
                     mineList.remove(0);
                 } else {
-                    tiles[i][j][0] = false;
-                    tiles[i][j][1] = false;
+                    tiles[i][j] = new Tile(false, false);
                 }
-
             }
         }
     }
@@ -136,15 +136,15 @@ public class GameGrid {
         }
         Collections.shuffle(mineList);
         for (int j = 0; j < specials.length; j++) {
-            tiles[specials[j][0]][specials[j][1]][0] = mineList.get(j);
+            tiles[specials[j][0]][specials[j][1]].setMine(mineList.get(j));
         }
     }
 
     public void clearMines() {
-        for (boolean[][] tile : tiles) {
-            for (boolean[] t : tile) {
-                if (t[0]) {
-                    t[1] = true;
+        for (Tile[] tile : tiles) {
+            for (Tile t : tile) {
+                if (t.isMine()) {
+                    t.setChecked(true);
                 }
             }
         }
@@ -153,9 +153,9 @@ public class GameGrid {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (boolean[][] tile : tiles) {
-            for (boolean[] t : tile) {
-                sb.append(stringRepresentation(t));
+        for (Tile[] tile : tiles) {
+            for (Tile t : tile) {
+                sb.append(t.toString());
             }
             sb.append("\n");
         }
@@ -204,17 +204,34 @@ public class GameGrid {
         return false;
     }
 
-    public String stringRepresentation(boolean[] t) {
-        if (t[0]) {
-            if (t[1]) {
-                return "¤";
+    public int leftToClear() {
+        if (!started) {
+            return -1;
+        }
+        int count = 0;
+        for (Tile[] tile : tiles) {
+            for (Tile t : tile) {
+                if (t.isMine() | t.isChecked()) {
+                    continue;
+                }
+                count++;
             }
-            return "*";
         }
-        if (t[1]) {
-            return " ";
-        }
-        return "#";
+        return count;
     }
 
+    public int getWidth() {
+        return tiles[0].length;
+    }
+
+    public int getHeight() {
+        return tiles.length;
+    }
+
+    public boolean isCleared(int row, int column) {
+        if (!started) {
+            return false;
+        }
+        return tiles[row][column].isChecked();
+    }
 }

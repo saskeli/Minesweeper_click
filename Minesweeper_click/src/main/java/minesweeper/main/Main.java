@@ -1,12 +1,12 @@
 
 package minesweeper.main;
 
-import minesweeper.logic.GameGrid;
+import minesweeper.textUI.TextGame;
 
 public class Main {
     public static void main(String[] args) {
-        GameGrid g = new GameGrid(5, 5, 14);
-        g.clear(8, 15);
-        System.out.println(g);
+        Game g = new Game(16, 16, 40);
+        TextGame tg = new TextGame(g);
+        tg.run();
     }
 }

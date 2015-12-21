@@ -1,6 +1,6 @@
 package logic;
 
-import minesweeper.logic.GameGrid;
+import minesweeper.logic.*;
 import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -32,11 +32,11 @@ public class GameGridTest {
     public void setUp() {
         randomGameGrid = new GameGrid(30, 16, 99);
         randomGameGrid.clear(8, 15);
-        smallInjectedGridOne = new GameGrid(new boolean[][][]{{{false, true}, {true, false}}, 
-                                                              {{false, false}, {true, false}}});
-        smallInjectedGridTwo = new GameGrid(new boolean[][][]{{{false, false}, {false, false}, {false, false}}, 
-                                                              {{false, false}, {false, false}, {false, false}},
-                                                              {{false, false}, {false, false}, {false, false}}});
+        smallInjectedGridOne = new GameGrid(new Tile[][]{{new Tile(false, true), new Tile(true, false)}, 
+                                                         {new Tile(false, false), new Tile(true, false)}});
+        smallInjectedGridTwo = new GameGrid(new Tile[][]{{new Tile(false, false), new Tile(false, false), new Tile(false, false)}, 
+                                                         {new Tile(false, false), new Tile(false, false), new Tile(false, false)},
+                                                         {new Tile(false, false), new Tile(false, false), new Tile(false, false)}});
         brokenGame = new GameGrid(5, 5, 25);
         randomGameWithSomeExtraMines = new GameGrid(5, 5, 21);
         randomGameWithExactMineCount = new GameGrid(5, 5, 16);
@@ -100,26 +100,6 @@ public class GameGridTest {
         assertEquals(99, mines);
         assertEquals(30 * 16 - 99, hiddenTiles + clearedTiles);
         assertEquals(true, clearedTiles > 8);
-    }
-    
-    @Test
-    public void tileTextRepresentationUnclearedMine() {
-        assertEquals("*", randomGameGrid.stringRepresentation(new boolean[]{true, false}));
-    }
-    
-    @Test
-    public void tileTextRepresentationClearedMine() {
-        assertEquals("¤", randomGameGrid.stringRepresentation(new boolean[]{true, true}));
-    }
-    
-    @Test
-    public void tileTextRepresentationUnclearedEmpty() {
-        assertEquals("#", randomGameGrid.stringRepresentation(new boolean[]{false, false}));
-    }
-    
-    @Test
-    public void tileTextRepresentationClearedEmpty() {
-        assertEquals(" ", randomGameGrid.stringRepresentation(new boolean[]{false, true}));
     }
     
     @Test
@@ -239,13 +219,13 @@ public class GameGridTest {
     
     @Test
     public void getValueOfNonStarted() {
-        assertEquals(0, brokenGame.getValue(2, 2));
+        assertEquals(-1, brokenGame.getValue(2, 2));
     }
     
     @Test
     public void getValueOfMine() {
         brokenGame.clear(2, 3);
-        assertEquals(-1, brokenGame.getValue(2, 2));
+        assertEquals(9, brokenGame.getValue(2, 2));
     }
     
     @Test
@@ -295,5 +275,10 @@ public class GameGridTest {
         randomGameWithExactMineCount.clear(2, 2);
         assertEquals("*****\n*   *\n*   *\n*   *\n*****\n", 
                 randomGameWithExactMineCount.toString());
+    }
+    
+    @Test
+    public void invalidCoordinateClear() {
+        assertEquals(true, randomGameGrid.clear(16, 30));
     }
 }
