@@ -19,6 +19,7 @@ pvm        | aika | kohde |
 pvm        | aika | kohde |
 -----------|------|-------|
 2015-12-21 | 2h   | Lisää refaktorointia (ei ehtinyt push deadlineen) |
+2015-12-22 | 1h   | Lisää refaktorointia |
 
 ## Yhteensä
 
