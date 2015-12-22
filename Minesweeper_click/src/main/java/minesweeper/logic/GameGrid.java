@@ -7,100 +7,92 @@ public class GameGrid {
     private final Tile[][] tiles;
     private boolean started;
     private final int mines;
+    private final Coordinate max;
 
     public GameGrid(int width, int height, int mines) {
         this.mines = mines;
-        tiles = new Tile[height][width];
+        tiles = new Tile[Math.max(1, height)][Math.max(1, width)];
         this.started = false;
+        this.max = new Coordinate(height - 1, width - 1);
     }
 
     public GameGrid(Tile[][] tiles) {
         this.tiles = tiles;
         this.started = true;
         this.mines = -1;
+        this.max = new Coordinate(this.tiles.length - 1, this.tiles[0].length -1);
     }
 
-    public int getValue(int row, int column) {
+    public int getValue(Coordinate coord) {
         if (!started) {
             return -1;
         }
-        if (hasMine(row, column)) {
+        if (hasMine(coord)) {
             return 9;
         }
-        return surroundingMines(row, column);
+        return surroundingMines(coord);
     }
 
-    public List<int[]> surroundingValidCoords(int row, int column) {
-        int[][] possible = getSurroundingCoords(row, column);
-        List<int[]> actual = new ArrayList<>();
-        actual.addAll(Arrays.asList(possible));
-        return actual;
+    public boolean isValid(Coordinate coord) {
+        return coord.isValid(max);
     }
 
-    public boolean isValid(int row, int column) {
-        if (row < 0 || column < 0) {
-            return false;
-        }
-        return tiles.length > row && tiles[0].length > column;
-    }
-
-    public int surroundingMines(int row, int column) {
-        int sum = 0;
-        for (int[] c : getSurroundingCoords(row, column)) {
-            if (tiles[c[0]][c[1]].isMine()) {
-                sum += 1;
+    public int surroundingMines(Coordinate coord) {
+        int adjacentMines = 0;
+        for (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
+            if (tiles[coordinate.getRow()][coordinate.getColumn()].isMine()) {
+                adjacentMines += 1;
             }
         }
-        return sum;
+        return adjacentMines;
     }
 
-    public boolean hasMine(int row, int column) {
+    public boolean hasMine(Coordinate coord) {
         try {
-            return tiles[row][column].isMine();
+            return tiles[coord.getRow()][coord.getColumn()].isMine();
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }
     }
 
-    public boolean clear(int row, int column) {
-        if (!isValid(row, column)) {
+    public boolean clear(Coordinate coord) {
+        if (!coord.isValid(max)) {
             return true;
         }
         if (!started) {
-            generateTiles(row, column);
+            generateTiles(coord);
             started = true;
         }
-        Tile t = tiles[row][column];
-        t.setChecked(true);
-        if (t.isMine()) {
+        Tile tile = tiles[coord.getRow()][coord.getColumn()];
+        tile.setChecked(true);
+        if (tile.isMine()) {
             clearMines();
             return false;
         }
-        if (surroundingMines(row, column) == 0) {
-            for (int[] c : surroundingValidCoords(row, column)) {
-                if (!tiles[c[0]][c[1]].isChecked()) {
-                    clear(c[0], c[1]);
+        if (surroundingMines(coord) == 0) {
+            for (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
+                if (!tiles[coordinate.getRow()][coordinate.getColumn()].isChecked()) {
+                    clear(coordinate);
                 }
             }
         }
         return true;
     }
 
-    public void generateTiles(int row, int column) {
+    public void generateTiles(Coordinate coord) {
         List<Boolean> mineList = new ArrayList<>();
-        List<int[]> special = surroundingValidCoords(row, column);
-        int[] coord = {row, column};
-        special.add(coord);
-        populateList(mineList, special.size());
-        populateTileGrid(mineList, special);
-        int extraMines = mines - (tiles.length * tiles[0].length - special.size());
+        List<Coordinate> specialSquares = coord.getAdjacentCoordinates(max);
+        specialSquares.add(coord);
+        populateList(mineList, specialSquares.size());
+        populateTileGrid(mineList, specialSquares);
+        int extraMines = mines - (tiles.length * tiles[0].length - specialSquares.size());
         if (extraMines > 0) {
             addMinesToSpecials(extraMines, coord);
         }
     }
 
-    public void populateList(List<Boolean> mineList, int specials) {
-        for (int i = 0; i < (tiles.length * tiles[0].length) - specials; i++) {
+    public void populateList(List<Boolean> mineList, int specialSquares) {
+        for (int i = 0; i < (tiles.length * tiles[0].length) - specialSquares; i++) {
             if (i < this.mines) {
                 mineList.add(true);
             } else {
@@ -110,11 +102,11 @@ public class GameGrid {
         Collections.shuffle(mineList);
     }
 
-    public void populateTileGrid(List<Boolean> mineList, List<int[]> special) {
+    public void populateTileGrid(List<Boolean> mineList, List<Coordinate> specialSquares) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
-                int[] c = {i, j};
-                if (!isOnList(c, special)) {
+                Coordinate coord = new Coordinate(i, j);
+                if (!isOnList(coord, specialSquares)) {
                     tiles[i][j] = new Tile(mineList.get(0), false);
                     mineList.remove(0);
                 } else {
@@ -124,27 +116,27 @@ public class GameGrid {
         }
     }
 
-    public void addMinesToSpecials(int i, int[] coord) {
+    public void addMinesToSpecials(int minesToAdd, Coordinate aroundCoord) {
         List<Boolean> mineList = new ArrayList<>();
-        int[][] specials = getSurroundingCoords(coord[0], coord[1]);
-        for (int j = 0; j < specials.length; j++) {
-            if (j < i) {
+        List<Coordinate> specialSquares = aroundCoord.getAdjacentCoordinates(max);
+        for (int j = 0; j < specialSquares.size(); j++) {
+            if (j < minesToAdd) {
                 mineList.add(true);
             } else {
                 mineList.add(false);
             }
         }
         Collections.shuffle(mineList);
-        for (int j = 0; j < specials.length; j++) {
-            tiles[specials[j][0]][specials[j][1]].setMine(mineList.get(j));
+        for (int j = 0; j < specialSquares.size(); j++) {
+            tiles[specialSquares.get(j).getRow()][specialSquares.get(j).getColumn()].setMine(mineList.get(j));
         }
     }
 
     public void clearMines() {
-        for (Tile[] tile : tiles) {
-            for (Tile t : tile) {
-                if (t.isMine()) {
-                    t.setChecked(true);
+        for (Tile[] tileRow : tiles) {
+            for (Tile tile : tileRow) {
+                if (tile.isMine()) {
+                    tile.setChecked(true);
                 }
             }
         }
@@ -152,56 +144,18 @@ public class GameGrid {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Tile[] tile : tiles) {
-            for (Tile t : tile) {
-                sb.append(t.toString());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Tile[] tileRow : tiles) {
+            for (Tile tile :  tileRow) {
+                stringBuilder.append(tile.toString());
             }
-            sb.append("\n");
+            stringBuilder.append("\n");
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
-    public int[][] getSurroundingCoords(int row, int column) {
-        List<int[]> surroundings = new ArrayList<>();
-        if (isValid(row - 1, column - 1)) {
-            surroundings.add(new int[]{row - 1, column - 1});
-        }
-        if (isValid(row - 1, column)) {
-            surroundings.add(new int[]{row - 1, column});
-        }
-        if (isValid(row - 1, column + 1)) {
-            surroundings.add(new int[]{row - 1, column + 1});
-        }
-        if (isValid(row, column - 1)) {
-            surroundings.add(new int[]{row, column - 1});
-        }
-        if (isValid(row, column + 1)) {
-            surroundings.add(new int[]{row, column + 1});
-        }
-        if (isValid(row + 1, column - 1)) {
-            surroundings.add(new int[]{row + 1, column - 1});
-        }
-        if (isValid(row + 1, column)) {
-            surroundings.add(new int[]{row + 1, column});
-        }
-        if (isValid(row + 1, column + 1)) {
-            surroundings.add(new int[]{row + 1, column + 1});
-        }
-        int[][] returnable = new int[surroundings.size()][2];
-        for (int i = 0; i < surroundings.size(); i++) {
-            returnable[i] = surroundings.get(i);
-        }
-        return returnable;
-    }
-
-    public boolean isOnList(int[] c, List<int[]> special) {
-        for (int[] s : special) {
-            if (s[0] == c[0] && s[1] == c[1]) {
-                return true;
-            }
-        }
-        return false;
+    public boolean isOnList(Coordinate coordinate, List<Coordinate> specialSquares) {
+        return specialSquares.contains(coordinate);
     }
 
     public int leftToClear() {
@@ -209,9 +163,9 @@ public class GameGrid {
             return -1;
         }
         int count = 0;
-        for (Tile[] tile : tiles) {
-            for (Tile t : tile) {
-                if (t.isMine() | t.isChecked()) {
+        for (Tile[] tileRow : tiles) {
+            for (Tile tile : tileRow) {
+                if (tile.isMine() | tile.isChecked()) {
                     continue;
                 }
                 count++;
@@ -228,10 +182,10 @@ public class GameGrid {
         return tiles.length;
     }
 
-    public boolean isCleared(int row, int column) {
+    public boolean isCleared(Coordinate coord) {
         if (!started) {
             return false;
         }
-        return tiles[row][column].isChecked();
+        return tiles[coord.getRow()][coord.getColumn()].isChecked();
     }
 }

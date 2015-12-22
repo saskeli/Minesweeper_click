@@ -31,7 +31,7 @@ public class GameGridTest {
     @Before
     public void setUp() {
         randomGameGrid = new GameGrid(30, 16, 99);
-        randomGameGrid.clear(8, 15);
+        randomGameGrid.clear(new Coordinate(8, 15));
         smallInjectedGridOne = new GameGrid(new Tile[][]{{new Tile(false, true), new Tile(true, false)}, 
                                                          {new Tile(false, false), new Tile(true, false)}});
         smallInjectedGridTwo = new GameGrid(new Tile[][]{{new Tile(false, false), new Tile(false, false), new Tile(false, false)}, 
@@ -48,8 +48,8 @@ public class GameGridTest {
 
     @Test
     public void mineClearOnLoss() {
-        assertEquals(true, brokenGame.clear(2, 3));
-        assertEquals(false, brokenGame.clear(0, 0));
+        assertEquals(true, brokenGame.clear(new Coordinate(2, 3)));
+        assertEquals(false, brokenGame.clear(new Coordinate(0, 0)));
         int mines = 0;
         int clearedMines = 0;
         int clearedTiles = 0;
@@ -69,7 +69,7 @@ public class GameGridTest {
     
     @Test
     public void randomConstructorWithTooManyMines() {
-        assertEquals(true, brokenGame.clear(2, 3));
+        assertEquals(true, brokenGame.clear(new Coordinate(2, 3)));
         int mines = 0;
         int clearedTiles = 0;
         for (char c : brokenGame.toString().toCharArray()) {
@@ -104,40 +104,20 @@ public class GameGridTest {
     
     @Test
     public void isOnListWhenOnList() {
-        List<int[]> list = new ArrayList<>();
-        list.add(new int[]{1, 2});
-        list.add(new int[]{3, 5});
-        int[] target = new int[]{3, 5};
+        List<Coordinate> list = new ArrayList<>();
+        list.add(new Coordinate(1, 2));
+        list.add(new Coordinate(3, 5));
+        Coordinate target = new Coordinate(3, 5);
         assertEquals(true, randomGameGrid.isOnList(target, list));
     }
     
     @Test
     public void isOnListWhenNotOnList() {
-        List<int[]> list = new ArrayList<>();
-        list.add(new int[]{1, 2});
-        list.add(new int[]{3, 5});
-        int[] target = new int[]{4, 5};
+        List<Coordinate> list = new ArrayList<>();
+        list.add(new Coordinate(1, 2));
+        list.add(new Coordinate(3, 5));
+        Coordinate target = new Coordinate(4, 5);
         assertEquals(false, randomGameGrid.isOnList(target, list));
-    }
-    
-    @Test
-    public void getSurroundingCoordinates() {
-        assertEquals(8, randomGameGrid.getSurroundingCoords(8, 15).length);
-    }
-    
-    @Test
-    public void getSurroundingCoordinatesOnEdge() {
-        assertEquals(5, randomGameGrid.getSurroundingCoords(0, 15).length);
-    }
-    
-    @Test
-    public void getSurroundingCoordinatesInUpperLeftCorner() {
-        assertEquals(3, randomGameGrid.getSurroundingCoords(0, 0).length);
-    }
-    
-    @Test
-    public void getSurroundingCoordinatesInLowerRightCorner() {
-        assertEquals(3, randomGameGrid.getSurroundingCoords(15, 29).length);
     }
     
     @Test
@@ -153,13 +133,13 @@ public class GameGridTest {
     
     @Test
     public void mineInsertionAroundCentralStartOne() {
-        smallInjectedGridTwo.addMinesToSpecials(8, new int[]{1, 1});
+        smallInjectedGridTwo.addMinesToSpecials(8, new Coordinate(1, 1));
         assertEquals("***\n*#*\n***\n", smallInjectedGridTwo.toString());
     }
     
     @Test
     public void mineInsertionAroundCentralStartTwo() {
-        smallInjectedGridTwo.addMinesToSpecials(4, new int[]{1, 1});
+        smallInjectedGridTwo.addMinesToSpecials(4, new Coordinate(1, 1));
         int mines = 0;
         int hiddenTiles = 0;
         for (char c : smallInjectedGridTwo.toString().toCharArray()) {
@@ -175,13 +155,13 @@ public class GameGridTest {
     
     @Test
     public void mineInsertionAroundEdgeStartOne() {
-        smallInjectedGridTwo.addMinesToSpecials(7, new int[]{0, 1});
+        smallInjectedGridTwo.addMinesToSpecials(7, new Coordinate(0, 1));
         assertEquals("*#*\n***\n###\n", smallInjectedGridTwo.toString());
     }
     
     @Test
     public void mineInsertionAroundEdgeStartTwo() {
-        smallInjectedGridTwo.addMinesToSpecials(4, new int[]{0, 1});
+        smallInjectedGridTwo.addMinesToSpecials(4, new Coordinate(0, 1));
         int mines = 0;
         int hiddenTiles = 0;
         for (char c : smallInjectedGridTwo.toString().toCharArray()) {
@@ -197,13 +177,13 @@ public class GameGridTest {
     
     @Test
     public void mineInsertionAroundCornerStartOne() {
-        smallInjectedGridTwo.addMinesToSpecials(7, new int[]{0, 0});
+        smallInjectedGridTwo.addMinesToSpecials(7, new Coordinate(0, 0));
         assertEquals("#*#\n**#\n###\n", smallInjectedGridTwo.toString());
     }
     
     @Test
     public void mineInsertionAroundCornerStartTwo() {
-        smallInjectedGridTwo.addMinesToSpecials(2, new int[]{0, 0});
+        smallInjectedGridTwo.addMinesToSpecials(2, new Coordinate(0, 0));
         int mines = 0;
         int hiddenTiles = 0;
         for (char c : smallInjectedGridTwo.toString().toCharArray()) {
@@ -219,39 +199,39 @@ public class GameGridTest {
     
     @Test
     public void getValueOfNonStarted() {
-        assertEquals(-1, brokenGame.getValue(2, 2));
+        assertEquals(-1, brokenGame.getValue(new Coordinate(2, 2)));
     }
     
     @Test
     public void getValueOfMine() {
-        brokenGame.clear(2, 3);
-        assertEquals(9, brokenGame.getValue(2, 2));
+        brokenGame.clear(new Coordinate(2, 3));
+        assertEquals(9, brokenGame.getValue(new Coordinate(2, 2)));
     }
     
     @Test
     public void getValueOfNonMine() {
-        brokenGame.clear(2, 3);
-        assertEquals(8, brokenGame.getValue(2, 3));
+        brokenGame.clear(new Coordinate(2, 3));
+        assertEquals(8, brokenGame.getValue(new Coordinate(2, 3)));
     }
     
     @Test
     public void hasMineTestOnMine() {
-        assertEquals(true, smallInjectedGridOne.hasMine(0, 1));
+        assertEquals(true, smallInjectedGridOne.hasMine(new Coordinate(0, 1)));
     }
     
     @Test
     public void hasMineTestOnNonMine() {
-        assertEquals(false, smallInjectedGridOne.hasMine(0, 0));
+        assertEquals(false, smallInjectedGridOne.hasMine(new Coordinate(0, 0)));
     }
     
     @Test
     public void hasMineTestOnInvalidLocation() {
-        assertEquals(false, smallInjectedGridOne.hasMine(3, 4));
+        assertEquals(false, smallInjectedGridOne.hasMine(new Coordinate(3, 4)));
     }
     
     @Test
     public void mineCountWhenExtraMinesOnStartup() {
-        assertEquals(true, randomGameWithSomeExtraMines.clear(2, 2));
+        assertEquals(true, randomGameWithSomeExtraMines.clear(new Coordinate(2, 2)));
         int mines = 0;
         int clearedTiles = 0;
         int unClearedTiles = 0;
@@ -267,18 +247,18 @@ public class GameGridTest {
         assertEquals(21, mines);
         assertEquals(3, unClearedTiles);
         assertEquals(1, clearedTiles);
-        assertEquals(5, randomGameWithSomeExtraMines.getValue(2, 2));
+        assertEquals(5, randomGameWithSomeExtraMines.getValue(new Coordinate(2, 2)));
     }
     
     @Test
     public void mineCountWithExactMinesInConstructor() {
-        randomGameWithExactMineCount.clear(2, 2);
+        randomGameWithExactMineCount.clear(new Coordinate(2, 2));
         assertEquals("*****\n*   *\n*   *\n*   *\n*****\n", 
                 randomGameWithExactMineCount.toString());
     }
     
     @Test
     public void invalidCoordinateClear() {
-        assertEquals(true, randomGameGrid.clear(16, 30));
+        assertEquals(true, randomGameGrid.clear(new Coordinate(16, 30)));
     }
 }

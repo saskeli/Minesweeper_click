@@ -30,7 +30,7 @@ public class Game {
     }
     
     public void clear(int row, int column) {
-        boolean cleared = gameGrid.clear(row, column);
+        boolean cleared = gameGrid.clear(new Coordinate(row, column));
         over = !cleared;
     }
     
@@ -60,8 +60,8 @@ public class Game {
     }
     
     public int getTileState(int row, int column) {
-        if (gameGrid.isCleared(row, column)) {
-            return gameGrid.getValue(row, column);
+        if (gameGrid.isCleared(new Coordinate(row, column))) {
+            return gameGrid.getValue(new Coordinate(row, column));
         }
         return -1;
     }
