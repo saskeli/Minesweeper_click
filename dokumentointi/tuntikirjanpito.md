@@ -15,10 +15,16 @@ pvm        | aika | kohde |
 2015-12-20 | 3h   | Kauheesti kaikkee ja sitten koko homma uusiks |
 2015-12-21 | 2h   | Testejä ja kevyttä refaktorointia. (refaktorointi *vähän* kesken) |
 
+## Deadline 3
+pvm        | aika | kohde |
+-----------|------|-------|
+2015-12-21 | 2h   | Lisää refaktorointia (ei ehtinyt push deadlineen) |
+
 ## Yhteensä
 
 DL      | aika    |
 --------|---------|
 1       | 2h      |
 2       | 8h      |
-**yht** | **10h** |
+3       | 2h      |
+**yht** | **12h** |
