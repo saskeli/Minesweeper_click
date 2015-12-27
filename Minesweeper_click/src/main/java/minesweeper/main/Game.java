@@ -1,36 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package minesweeper.main;
 
 import minesweeper.logic.*;
 
-/**
- *
- * @author Saskeli
- */
 public class Game {
     private GameGrid gameGrid;
     private boolean over;
+    private int actions;
 
     public Game(int widht, int height, int mines) {
         this.gameGrid = new GameGrid(widht, height, mines);
         this.over = false;
+        actions = 0;
     }
     
     public Game(GameGrid gameGrid) {
         this.gameGrid = gameGrid;
         this.over = false;
+        actions = 0;
     }
 
     public Game() {
         this(30, 16, 99);
+        actions = 0;
     }
     
     public void clear(int row, int column) {
         boolean cleared = gameGrid.clear(new Coordinate(row, column));
+        actions++;
         over = !cleared;
     }
     
@@ -45,6 +41,7 @@ public class Game {
             mines = 99;
         }
         gameGrid = new GameGrid(width, height, mines);
+        actions = 0;
     }
     
     public int gameWidth() {
@@ -64,5 +61,9 @@ public class Game {
             return gameGrid.getValue(new Coordinate(row, column));
         }
         return -1;
+    }
+
+    public int getActionCount() {
+        return actions;
     }
 }
