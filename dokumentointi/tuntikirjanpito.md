@@ -23,6 +23,8 @@ pvm        | aika | kohde |
 2015-12-23 | 2h   | Suunnittelua ja swingiin perehtymistä (ei committeja) |
 2015-12-27 | 5h   | GUI layout. Vaihto testi UIsta Swing GUIhin |
 2015-12-28 | 1h   | Koodikatselmointi 1 |
+2015-12-28 | 1h   | CleanCode |
+2015-12-28 | 2h   | Testien päivitystä, luokkakaavio, uudet raportit, refaktorointia |
 
 ## Yhteensä
 
@@ -30,5 +32,5 @@ DL      | aika    |
 --------|---------|
 1       | 2h      |
 2       | 8h      |
-3       | 11h      |
-**yht** | **21h** |
+3       | 14h      |
+**yht** | **24h** |
