@@ -1,7 +1,7 @@
 package minesweeper.main;
 
 import minesweeper.gui.Gui;
-import minesweeper.textUI.TextGame;
+import minesweeper.textui.TextGame;
 import javax.swing.SwingUtilities;
 
 public class Main {

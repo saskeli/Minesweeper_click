@@ -1,4 +1,4 @@
-package minesweeper.textUI;
+package minesweeper.textui;
 
 import minesweeper.main.Game;
 import minesweeper.util.InputReader;

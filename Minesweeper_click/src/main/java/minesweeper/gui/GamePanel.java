@@ -5,7 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import minesweeper.main.Game;
 
-class GamePanel extends JPanel{
+class GamePanel extends JPanel {
     private Game game;
 
     public GamePanel(Game game) {

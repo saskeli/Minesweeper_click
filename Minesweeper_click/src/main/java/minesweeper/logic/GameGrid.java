@@ -20,7 +20,7 @@ public class GameGrid {
         this.tiles = tiles;
         this.started = true;
         this.mines = -1;
-        this.max = new Coordinate(this.tiles.length - 1, this.tiles[0].length -1);
+        this.max = new Coordinate(this.tiles.length - 1, this.tiles[0].length - 1);
     }
 
     public int getValue(Coordinate coord) {
