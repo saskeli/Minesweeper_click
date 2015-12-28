@@ -21,7 +21,8 @@ pvm        | aika | kohde |
 2015-12-21 | 2h   | Lisää refaktorointia (ei ehtinyt push deadlineen) |
 2015-12-22 | 1h   | Lisää refaktorointia |
 2015-12-23 | 2h   | Suunnittelua ja swingiin perehtymistä (ei committeja) |
-2015-12-28 | 4h   | GUI layout. Vaihto testi UIsta Swing GUIhin |
+2015-12-27 | 5h   | GUI layout. Vaihto testi UIsta Swing GUIhin |
+2015-12-28 | 1h   | Koodikatselmointi 1 |
 
 ## Yhteensä
 
@@ -29,5 +30,5 @@ DL      | aika    |
 --------|---------|
 1       | 2h      |
 2       | 8h      |
-3       | 9h      |
-**yht** | **19h** |
+3       | 11h      |
+**yht** | **21h** |
