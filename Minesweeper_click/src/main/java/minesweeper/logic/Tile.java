@@ -39,6 +39,4 @@ public class Tile {
         }
         return "#";
     }
-    
-    
 }

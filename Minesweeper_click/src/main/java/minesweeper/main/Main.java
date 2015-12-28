@@ -1,7 +1,6 @@
 package minesweeper.main;
 
 import minesweeper.gui.Gui;
-import minesweeper.textui.TextGame;
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -10,10 +9,6 @@ public class Main {
         if (args.length == 0) {
             Game g = new Game(30, 16, 99);
             SwingUtilities.invokeLater(new Gui(g));
-        } else {
-            Game g = new Game(16, 16, 40);
-            TextGame tg = new TextGame(g);
-            tg.run();
         }
     }
 }
