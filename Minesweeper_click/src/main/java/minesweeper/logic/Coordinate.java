@@ -59,7 +59,7 @@ public class Coordinate {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 61 * hash + this.row;
+        hash = 79 * hash + this.row;
         hash = 61 * hash + this.column;
         return hash;
     }

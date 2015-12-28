@@ -261,4 +261,55 @@ public class GameGridTest {
     public void invalidCoordinateClear() {
         assertEquals(true, randomGameGrid.clear(new Coordinate(16, 30)));
     }
+    
+    @Test
+    public void leftToClearOnUninitializedGameGrid() {
+        assertEquals(-1, randomGameWithSomeExtraMines.leftToClear());
+    }
+    
+    @Test
+    public void leftToClear() {
+        assertEquals(1, smallInjectedGridOne.leftToClear());
+    }
+    
+    @Test
+    public void leftToClearOnCleared() {
+        smallInjectedGridOne.clear(new Coordinate(1, 0));
+        assertEquals(0, smallInjectedGridOne.leftToClear());
+    }
+    
+    @Test
+    public void gridWidth() {
+        assertEquals(30, randomGameGrid.getWidth());
+    }
+    
+    @Test
+    public void gridHeight() {
+        assertEquals(16, randomGameGrid.getHeight());
+    }
+    
+    @Test
+    public void validCoordIsValid() {
+        assertEquals(true, randomGameGrid.isValid(new Coordinate(15, 29)));
+    }
+    
+    @Test
+    public void invalidCoordIsInvalid() {
+        assertEquals(false, randomGameGrid.isValid(new Coordinate(16, 30)));
+    }
+    
+    @Test
+    public void isClearedReturnsTrueWhenChecked() {
+        assertEquals(true, smallInjectedGridOne.isCleared(new Coordinate(0, 0)));
+    }
+    
+    @Test
+    public void isClearedReturnsFalseWhenUnchecked() {
+        assertEquals(false, smallInjectedGridOne.isCleared(new Coordinate(1, 0)));
+    }
+    
+    @Test
+    public void isClearedReturnsFalseOnUnstartedGame() {
+        assertEquals(false, randomGameWithSomeExtraMines.isCleared(new Coordinate(2, 2)));
+    }
 }

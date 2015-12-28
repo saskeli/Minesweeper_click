@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CoordinateTest {
+    private Coordinate c;
     
     public CoordinateTest() {
     }
@@ -23,6 +24,7 @@ public class CoordinateTest {
     
     @Before
     public void setUp() {
+        c = new Coordinate(4, 6);
     }
     
     @After
@@ -53,4 +55,25 @@ public class CoordinateTest {
         assertEquals(3, c.getAdjacentCoordinates(new Coordinate(15, 29)).size());
     }
     
+    @Test
+    public void coordinateHashCodeWorksWhenEquals() {
+        Coordinate d = new Coordinate(4, 6);
+        assertEquals(c.hashCode(), d.hashCode());
+    }
+    
+    @Test
+    public void coodinateHashCodeWorksWhenNotEqual() {
+        Coordinate d = new Coordinate(6, 4);
+        assertEquals(false, c.hashCode() == d.hashCode());
+    }
+    
+    @Test
+    public void doesNotEqualNull() {
+        assertEquals(false, c.equals(null));
+    }
+    
+    @Test
+    public void doesNotEqualNoncoordinate() {
+        assertEquals(false, c.equals("bla"));
+    }
 }
