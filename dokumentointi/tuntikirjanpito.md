@@ -26,11 +26,17 @@ pvm        | aika | kohde |
 2015-12-28 | 1h   | CleanCode |
 2015-12-28 | 2h   | Testien päivitystä, luokkakaavio, uudet raportit, refaktorointia |
 
+## Deadline 4
+pvm        | aika | kohde |
+-----------|------|-------|
+2015-12-29 | 2h   | ActionListeneri lisätty ja gui komponentteja kirjotettu. |
+
 ## Yhteensä
 
 DL      | aika    |
 --------|---------|
 1       | 2h      |
 2       | 8h      |
-3       | 14h      |
-**yht** | **24h** |
+3       | 14h     |
+4       | 2h      |
+**yht** | **26h** |
