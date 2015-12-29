@@ -25,6 +25,9 @@ public class Game {
     }
     
     public void clear(int row, int column) {
+        if (over || getRemainingTiles() == 0) {
+            return;
+        }
         boolean cleared = gameGrid.clear(new Coordinate(row, column));
         actions++;
         over = !cleared;
