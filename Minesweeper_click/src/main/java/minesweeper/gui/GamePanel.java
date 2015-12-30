@@ -1,13 +1,14 @@
 package minesweeper.gui;
 
+import minesweeper.eventhandlers.SquareActionListener;
 import java.awt.Component;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import minesweeper.main.Game;
 
 public class GamePanel extends JPanel {
     private Game game;
+    private StatPanel statPanel = null;
 
     public GamePanel(Game game) {
         this.game = game;
@@ -20,11 +21,24 @@ public class GamePanel extends JPanel {
         }
     }
 
-    void updateGrid() {
+    public void updateGrid() {
         for (Component component : this.getComponents()) {
             Square s = (Square)component;
             s.update();
         }
         updateUI();
+    }
+
+    public void setStatPanel(StatPanel statPanel) {
+        this.statPanel = statPanel;
+    }
+
+    public void startNewGame() {
+        game.newGame();
+        updateGrid();
+    }
+
+    public void startNewGame(int i, int i0, int i1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,5 +1,6 @@
 package minesweeper.gui;
 
+import minesweeper.eventhandlers.SquareActionListener;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
@@ -9,7 +10,7 @@ import minesweeper.main.Game;
  *
  * @author Saskeli
  */
-class Square extends JPanel {
+public class Square extends JPanel {
     private Game game;
     private final int row;
     private final int column;

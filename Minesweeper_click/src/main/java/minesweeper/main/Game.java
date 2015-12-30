@@ -47,6 +47,10 @@ public class Game {
         actions = 0;
     }
     
+    public void newGame() {
+        newGame(gameGrid.getWidth(), gameGrid.getHeight(), gameGrid.getMines());
+    }
+    
     public int gameWidth() {
         return gameGrid.getWidth();
     }

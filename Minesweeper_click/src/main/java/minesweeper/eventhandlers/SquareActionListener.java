@@ -1,9 +1,11 @@
-package minesweeper.gui;
+package minesweeper.eventhandlers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import minesweeper.main.Game;
 import javax.swing.*;
+import minesweeper.gui.GamePanel;
+import minesweeper.gui.Square;
 /**
  *
  * @author dongesa

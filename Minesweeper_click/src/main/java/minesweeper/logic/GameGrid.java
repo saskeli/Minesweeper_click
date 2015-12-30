@@ -188,4 +188,8 @@ public class GameGrid {
         }
         return tiles[coord.getRow()][coord.getColumn()].isChecked();
     }
+
+    public int getMines() {
+        return mines;
+    }
 }
