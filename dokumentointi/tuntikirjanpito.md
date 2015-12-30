@@ -30,6 +30,7 @@ pvm        | aika | kohde |
 pvm        | aika | kohde |
 -----------|------|-------|
 2015-12-29 | 2h   | ActionListeneri lisätty ja gui komponentteja kirjotettu. |
+2015-12-30 | 1h   | Uusi action listener joka ei toimi. Huomenna korjataan. |
 
 ## Yhteensä
 
@@ -38,5 +39,5 @@ DL      | aika    |
 1       | 2h      |
 2       | 8h      |
 3       | 14h     |
-4       | 2h      |
+4       | 3h      |
 **yht** | **26h** |
