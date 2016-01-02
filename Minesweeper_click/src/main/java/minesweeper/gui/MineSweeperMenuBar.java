@@ -5,7 +5,8 @@ import javax.swing.*;
 import minesweeper.eventhandlers.ButtonActionListener;
 
 /**
- *
+ * Menu bar for minesweeper_click
+ * 
  * @author dongesa
  */
 class MineSweeperMenuBar extends JMenuBar {

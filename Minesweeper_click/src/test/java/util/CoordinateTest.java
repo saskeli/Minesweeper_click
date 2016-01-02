@@ -1,6 +1,6 @@
-package logic;
+package util;
 
-import minesweeper.logic.Coordinate;
+import minesweeper.util.Coordinate;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

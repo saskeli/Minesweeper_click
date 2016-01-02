@@ -1,7 +1,13 @@
 package minesweeper.logic;
 
+import minesweeper.util.Coordinate;
 import java.util.*;
 
+/**
+ * Abstract representation of a minegrid.
+ * 
+ * @author Saskeli
+ */
 public class GameGrid {
 
     private final Tile[][] tiles;
@@ -146,7 +152,7 @@ public class GameGrid {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Tile[] tileRow : tiles) {
-            for (Tile tile :  tileRow) {
+            for (Tile tile : tileRow) {
                 stringBuilder.append(tile.toString());
             }
             stringBuilder.append("\n");
@@ -191,5 +197,19 @@ public class GameGrid {
 
     public int getMines() {
         return mines;
+    }
+
+    public boolean isFlagged(Coordinate coordinate) {
+        if (!started) {
+            return false;
+        }
+        return tiles[coordinate.getRow()][coordinate.getColumn()].isFlagged();
+    }
+
+    public void toggleFlag(Coordinate coordinate) {
+        if (!started) {
+            return;
+        }
+        tiles[coordinate.getRow()][coordinate.getColumn()].toggleFlag();
     }
 }

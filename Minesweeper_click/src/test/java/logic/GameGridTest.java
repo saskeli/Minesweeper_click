@@ -1,5 +1,6 @@
 package logic;
 
+import minesweeper.util.Coordinate;
 import minesweeper.logic.*;
 import java.util.*;
 import org.junit.After;
@@ -9,6 +10,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * @author Saskeli
+ */
 public class GameGridTest {
     private GameGrid randomGameGrid;
     private GameGrid smallInjectedGridOne;
@@ -311,5 +315,27 @@ public class GameGridTest {
     @Test
     public void isClearedReturnsFalseOnUnstartedGame() {
         assertEquals(false, randomGameWithSomeExtraMines.isCleared(new Coordinate(2, 2)));
+    }
+    
+    @Test
+    public void mineCount() {
+        assertEquals(99, randomGameGrid.getMines());
+    }
+    
+    @Test
+    public void unstartedIsUnFlagged() {
+        assertEquals(false, randomGameWithSomeExtraMines.isFlagged(new Coordinate(1, 1)));
+    }
+    
+    @Test
+    public void cantFlagUnstarted() {
+        randomGameWithSomeExtraMines.toggleFlag(new Coordinate(1, 1));
+        assertEquals(false, randomGameWithSomeExtraMines.isFlagged(new Coordinate(1, 1)));
+    }
+    
+    @Test
+    public void flagToggle() {
+        smallInjectedGridOne.toggleFlag(new Coordinate(0, 0));
+        assertEquals(true, smallInjectedGridOne.isFlagged(new Coordinate(0, 0)));
     }
 }

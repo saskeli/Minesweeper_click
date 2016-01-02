@@ -75,4 +75,24 @@ public class TileTest {
         Tile t = new Tile(false, true);
         assertEquals(" ", t.toString());
     }
+    
+    @Test
+    public void notFlaggedOnCreation() {
+        Tile t = new Tile(false, true);
+        assertEquals(false, t.isFlagged());
+    }
+    
+    @Test
+    public void flagToggleFromFalseToTrue() {
+        Tile t = new Tile(false, true);
+        t.toggleFlag();
+        assertEquals(true, t.isFlagged());
+    }
+    
+    @Test
+    public void flagToggleFromTrueToFalse() {
+        Tile t = new Tile(false, true, true);
+        t.toggleFlag();
+        assertEquals(false, t.isFlagged());
+    }
 }

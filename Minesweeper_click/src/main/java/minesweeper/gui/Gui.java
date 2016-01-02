@@ -5,6 +5,11 @@ import javax.swing.*;
 import minesweeper.eventhandlers.ButtonActionListener;
 import minesweeper.main.Game;
 
+/**
+ * Minesweeper GUI.
+ * 
+ * @author Saskeli
+ */
 public class Gui implements Runnable {
     private final Game game;
     private JFrame frame;
@@ -24,12 +29,16 @@ public class Gui implements Runnable {
 
     private void addComponents(Container contentPane) {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-        GamePanel gamePanel = new GamePanel(this.game);
+        GamePanel gamePanel = new GamePanel(this.game, this);
         ButtonActionListener buttonActionListener = new ButtonActionListener(gamePanel);
         StatPanel statPanel = new StatPanel(buttonActionListener);
         contentPane.add(statPanel);
         frame.setJMenuBar(new MineSweeperMenuBar(buttonActionListener));
         gamePanel.setStatPanel(statPanel);
         contentPane.add(gamePanel);
+    }
+
+    void rePack() {
+        frame.pack();
     }
 }

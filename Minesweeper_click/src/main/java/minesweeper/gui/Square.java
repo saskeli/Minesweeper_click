@@ -1,63 +1,77 @@
 package minesweeper.gui;
 
-import minesweeper.eventhandlers.SquareActionListener;
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.*;
+import minesweeper.eventhandlers.SquareClickListener;
 import minesweeper.main.Game;
+import minesweeper.util.Coordinate;
 
 /**
- *
+ * Representation of a minesweeper square for GUI
+ * 
  * @author Saskeli
  */
-public class Square extends JPanel {
+public class Square extends JLabel {
     private Game game;
-    private final int row;
-    private final int column;
-    private MineLabel value;
-    private JButton button;
-    private boolean isRevealed = false;
-    
-    public Square(Game game, int row, int column, SquareActionListener listener) {
-        setLayout(new BorderLayout());
+    private Coordinate coordinate;
+    private final Color defaultColor;
+
+    public Square(Game game, Coordinate coordinate, SquareClickListener listener) {
+        super("");
         this.game = game;
-        this.row = row;
-        this.column = column;
-        this.value = new MineLabel();
-        this.button = createButton(listener);
-        add(this.button);
+        this.coordinate = coordinate;
+        addMouseListener(listener);
+        setOpaque(true);
+        setHorizontalAlignment(JLabel.CENTER);
+        setVerticalAlignment(JLabel.CENTER);
+        setPreferredSize(new Dimension(25, 25));
+        setBorder(BorderFactory.createRaisedBevelBorder());
+        defaultColor = this.getBackground();
     }
 
-    public int getColumn() {
-        return column;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
-    public int getRow() {
-        return row;
-    }
-    
     public void update() {
-        int tileState = game.getTileState(row, column);
+        int tileState = game.getTileState(coordinate);
+        if (game.isFlagged(coordinate) && tileState == -1) {
+            return;
+        }
         if (tileState == -1) {
-            if (isRevealed) {
-                this.removeAll();
-                add(this.button);
-            }
-            return;
+            setBorder(BorderFactory.createRaisedBevelBorder());
+            setBackground(defaultColor);
+            setText("");
+        } else if (tileState == 0) {
+            setBackground(Color.WHITE);
+            setText("");
+            setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        } else if (tileState == 9) {
+            setBackground(Color.red);
+            setText("*");
+            setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        } else {
+            setBackground(Color.WHITE);
+            setText("" + tileState);
+            setBorder(BorderFactory.createLineBorder(Color.GRAY));
         }
-        if (isRevealed) {
-            return;
-        }
-        this.removeAll();
-        value.setText("" + tileState);
-        add(this.value);
     }
 
-    private JButton createButton(SquareActionListener listener) {
-        JButton b = new JButton();
-        b.setPreferredSize(new Dimension(25, 25));
-        b.setFocusable(false);
-        b.addActionListener(listener);
-        return b;
+    public void toggleFlag() {
+        game.toggleFlag(coordinate);
+        if (isFlagged()) {
+            setBackground(defaultColor);
+        } else {
+            setBackground(Color.PINK);
+        }
+    }
+
+    public boolean isFlagged() {
+        return game.isFlagged(coordinate);
+    }
+
+    public boolean isCleared() {
+        return (game.getTileState(coordinate) != -1);
     }
 }

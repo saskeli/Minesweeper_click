@@ -31,6 +31,8 @@ pvm        | aika | kohde |
 -----------|------|-------|
 2015-12-29 | 2h   | ActionListeneri lisätty ja gui komponentteja kirjotettu. |
 2015-12-30 | 1h   | Uusi action listener joka ei toimi. Huomenna korjataan. |
+2015-12-31 | 3h   | Sielu irtoaa swingin kanssa. Enpä siis korjannut. |
+2015-12-2  | 4h   | Isoja muutoksia UIhin. Aika vähän muuhun. Toimii taas vähän paremmin. Uudet raportit ja päivitetty luokkakaavio. |
 
 ## Yhteensä
 
@@ -39,5 +41,5 @@ DL      | aika    |
 1       | 2h      |
 2       | 8h      |
 3       | 14h     |
-4       | 3h      |
-**yht** | **27h** |
+4       | 10h      |
+**yht** | **34h** |

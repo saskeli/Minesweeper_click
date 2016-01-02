@@ -1,7 +1,13 @@
 package minesweeper.main;
 
+import minesweeper.util.Coordinate;
 import minesweeper.logic.*;
 
+/**
+ * Abstract representation of a minesweeper game.
+ * 
+ * @author Saskeli
+ */
 public class Game {
     private GameGrid gameGrid;
     private boolean over;
@@ -24,11 +30,14 @@ public class Game {
         actions = 0;
     }
     
-    public void clear(int row, int column) {
+    public void clear(Coordinate coordinate) {
         if (over || getRemainingTiles() == 0) {
             return;
         }
-        boolean cleared = gameGrid.clear(new Coordinate(row, column));
+        if (gameGrid.isCleared(coordinate)) {
+            return;
+        }
+        boolean cleared = gameGrid.clear(coordinate);
         actions++;
         over = !cleared;
     }
@@ -45,6 +54,7 @@ public class Game {
         }
         gameGrid = new GameGrid(width, height, mines);
         actions = 0;
+        over = false;
     }
     
     public void newGame() {
@@ -63,14 +73,22 @@ public class Game {
         return gameGrid.leftToClear();
     }
     
-    public int getTileState(int row, int column) {
-        if (gameGrid.isCleared(new Coordinate(row, column))) {
-            return gameGrid.getValue(new Coordinate(row, column));
+    public int getTileState(Coordinate coordinate) {
+        if (gameGrid.isCleared(coordinate)) {
+            return gameGrid.getValue(coordinate);
         }
         return -1;
     }
 
     public int getActionCount() {
         return actions;
+    }
+
+    public boolean isFlagged(Coordinate coordinate) {
+        return gameGrid.isFlagged(coordinate);
+    }
+
+    public void toggleFlag(Coordinate coordinate) {
+        gameGrid.toggleFlag(coordinate);
     }
 }
