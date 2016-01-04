@@ -35,26 +35,29 @@ public class SquareClickListener implements MouseListener {
         } else {
             mouseTwoPressed = true;
         }
+        if (mouseOnePressed && mouseTwoPressed) {
+            System.out.println("dualClick");
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         Square s = (Square) e.getSource();
         if (mouseOnePressed && mouseTwoPressed) {
+            game.clearSurrounding(s.getCoordinate());
             mouseOnePressed = mouseTwoPressed = false;
-            return;
-        }
-        if (s.isFlagged() || s.isCleared()) {
+            gamePanel.updateGrid();
             return;
         }
         if (e.getButton() == MouseEvent.BUTTON1) {
-            if (!s.isFlagged() && mouseOnePressed) {
+            if (mouseOnePressed) {
                 game.clear(s.getCoordinate());
                 gamePanel.updateGrid();
             }
         } else {
             if (mouseTwoPressed) {
-                s.toggleFlag();
+                game.toggleFlag(s.getCoordinate());
+                gamePanel.updateGrid();
             }
         }
         mouseOnePressed = mouseTwoPressed = false;

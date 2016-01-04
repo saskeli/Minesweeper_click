@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import minesweeper.gui.GamePanel;
+import minesweeper.util.GameType;
 
 /**
  * Action listener class for all the menu buttons and the new gama button.
@@ -22,16 +23,16 @@ public class ButtonActionListener implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         switch (((JComponent) ae.getSource()).getName()) {
             case "EasyButton":
-                gamePanel.startNewGame(9, 9, 10);
+                gamePanel.startNewGame(GameType.EASY);
                 break;
             case "NormalButton":
-                gamePanel.startNewGame(16, 16, 40);
+                gamePanel.startNewGame(GameType.NORMAL);
                 break;
             case "HardButton":
-                gamePanel.startNewGame(30, 16, 99);
+                gamePanel.startNewGame(GameType.HARD);
                 break;
             default:
-                gamePanel.startNewGame();
+                gamePanel.startNewGame(GameType.CUSTOM);
                 break;
         }
     }

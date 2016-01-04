@@ -36,10 +36,11 @@ public class Square extends JLabel {
 
     public void update() {
         int tileState = game.getTileState(coordinate);
-        if (game.isFlagged(coordinate) && tileState == -1) {
+        if (game.isFlagged(coordinate)) {
+            setBackground(Color.PINK);
             return;
         }
-        if (tileState == -1) {
+        if (!game.isChecked(coordinate)) {
             setBorder(BorderFactory.createRaisedBevelBorder());
             setBackground(defaultColor);
             setText("");
@@ -63,7 +64,7 @@ public class Square extends JLabel {
         if (isFlagged()) {
             setBackground(defaultColor);
         } else {
-            setBackground(Color.PINK);
+            
         }
     }
 
@@ -72,6 +73,6 @@ public class Square extends JLabel {
     }
 
     public boolean isCleared() {
-        return (game.getTileState(coordinate) != -1);
+        return (game.isChecked(coordinate));
     }
 }

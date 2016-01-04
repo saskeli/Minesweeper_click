@@ -2,6 +2,7 @@ package minesweeper.main;
 
 import minesweeper.util.Coordinate;
 import minesweeper.logic.*;
+import minesweeper.util.GameType;
 
 /**
  * Abstract representation of a minesweeper game.
@@ -43,10 +44,10 @@ public class Game {
     }
     
     public void newGame(int width, int height, int mines) {
-        if (width < 1) {
+        if (width < 1 || width > 45) {
             width = 30;
         }
-        if (height < 1) {
+        if (height < 1 || height > 32) {
             height = 16;
         }
         if (mines < 1) {
@@ -57,8 +58,18 @@ public class Game {
         over = false;
     }
     
+    public void newGame(GameType gameType) {
+        gameGrid = new GameGrid(gameType);
+        actions = 0;
+        over = false;
+    }
+    
     public void newGame() {
-        newGame(gameGrid.getWidth(), gameGrid.getHeight(), gameGrid.getMines());
+        if (gameGrid.getGameType() == GameType.CUSTOM) {
+            newGame(gameGrid.getWidth(), gameGrid.getHeight(), gameGrid.getMines());
+        } else {
+            newGame(gameGrid.getGameType());
+        }
     }
     
     public int gameWidth() {
@@ -77,7 +88,7 @@ public class Game {
         if (gameGrid.isCleared(coordinate)) {
             return gameGrid.getValue(coordinate);
         }
-        return -1;
+        return 0;
     }
 
     public int getActionCount() {
@@ -89,6 +100,20 @@ public class Game {
     }
 
     public void toggleFlag(Coordinate coordinate) {
+        if (over) {
+            return;
+        }
         gameGrid.toggleFlag(coordinate);
+    }
+
+    public boolean isChecked(Coordinate coordinate) {
+        return gameGrid.isCleared(coordinate);
+    }
+
+    public void clearSurrounding(Coordinate coordinate) {
+        if (isChecked(coordinate)) {
+            gameGrid.clearSurrounding(coordinate);
+            actions++;
+        }
     }
 }

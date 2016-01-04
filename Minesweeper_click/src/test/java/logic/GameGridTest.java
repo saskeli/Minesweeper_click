@@ -203,7 +203,7 @@ public class GameGridTest {
     
     @Test
     public void getValueOfNonStarted() {
-        assertEquals(-1, brokenGame.getValue(new Coordinate(2, 2)));
+        assertEquals(0, brokenGame.getValue(new Coordinate(2, 2)));
     }
     
     @Test

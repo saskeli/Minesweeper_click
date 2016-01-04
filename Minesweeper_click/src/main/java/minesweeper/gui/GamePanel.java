@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import minesweeper.eventhandlers.SquareClickListener;
 import minesweeper.main.Game;
 import minesweeper.util.Coordinate;
+import minesweeper.util.GameType;
 
 /**
  * Class describing minefield in JPanel form
@@ -46,8 +47,8 @@ public class GamePanel extends JPanel {
         updateGrid();
     }
 
-    public void startNewGame(int width, int height, int mines) {
-        game.newGame(width, height, mines);
+    public void startNewGame(GameType gameType) {
+        game.newGame(gameType);
         removeAll();
         populateGrid();
         gui.rePack();

@@ -1,11 +1,11 @@
 package minesweeper.logic;
 
-import minesweeper.util.Coordinate;
 import java.util.*;
+import minesweeper.util.*;
 
 /**
  * Abstract representation of a minegrid.
- * 
+ *
  * @author Saskeli
  */
 public class GameGrid {
@@ -14,8 +14,10 @@ public class GameGrid {
     private boolean started;
     private final int mines;
     private final Coordinate max;
+    private final GameType gameType;
 
     public GameGrid(int width, int height, int mines) {
+        gameType = GameType.CUSTOM;
         this.mines = mines;
         tiles = new Tile[Math.max(1, height)][Math.max(1, width)];
         this.started = false;
@@ -23,15 +25,42 @@ public class GameGrid {
     }
 
     public GameGrid(Tile[][] tiles) {
+        gameType = GameType.CUSTOM;
         this.tiles = tiles;
         this.started = true;
         this.mines = -1;
         this.max = new Coordinate(this.tiles.length - 1, this.tiles[0].length - 1);
     }
+    
+    public GameGrid(GameType gameType) {
+        if (gameType == GameType.EASY) {
+            this.gameType = gameType;
+            this.mines = 10;
+            this.tiles = new Tile[9][9];
+            this.started = false;
+            this.max = new Coordinate(8, 8);
+        } else if (gameType == GameType.NORMAL) {
+            this.gameType = gameType;
+            this.mines = 40;
+            this.tiles = new Tile[16][16];
+            this.started = false;
+            this.max = new Coordinate(15, 15);
+        } else {
+            this.gameType = GameType.HARD;
+            this.mines = 99;
+            this.tiles = new Tile[16][30];
+            this.started = false;
+            this.max = new Coordinate(15, 29);
+        }
+    }
+
+    public GameType getGameType() {
+        return gameType;
+    }
 
     public int getValue(Coordinate coord) {
         if (!started) {
-            return -1;
+            return 0;
         }
         if (hasMine(coord)) {
             return 9;
@@ -62,7 +91,7 @@ public class GameGrid {
     }
 
     public boolean clear(Coordinate coord) {
-        if (!coord.isValid(max)) {
+        if (!coord.isValid(max) || isCleared(coord) || isFlagged(coord)) {
             return true;
         }
         if (!started) {
@@ -76,11 +105,7 @@ public class GameGrid {
             return false;
         }
         if (surroundingMines(coord) == 0) {
-            for (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
-                if (!tiles[coordinate.getRow()][coordinate.getColumn()].isChecked()) {
-                    clear(coordinate);
-                }
-            }
+            clearSurroundingTiles(coord);
         }
         return true;
     }
@@ -207,9 +232,31 @@ public class GameGrid {
     }
 
     public void toggleFlag(Coordinate coordinate) {
-        if (!started) {
+        if (!started || isCleared(coordinate)) {
             return;
         }
         tiles[coordinate.getRow()][coordinate.getColumn()].toggleFlag();
+    }
+
+    public void clearSurrounding(Coordinate coordinate) {
+        if (surroundingMines(coordinate) == surroundingFlags(coordinate)) {
+            clearSurroundingTiles(coordinate);
+        }
+    }
+
+    private int surroundingFlags(Coordinate coordinate) {
+        int adjacentFlags = 0;
+        for (Coordinate coord : coordinate.getAdjacentCoordinates(max)) {
+            if (tiles[coord.getRow()][coord.getColumn()].isFlagged()) {
+                adjacentFlags += 1;
+            }
+        }
+        return adjacentFlags;
+    }
+
+    private void clearSurroundingTiles(Coordinate coord) {
+        for (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
+            clear(coordinate);
+        }
     }
 }

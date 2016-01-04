@@ -40,6 +40,9 @@ public class Tile {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+        if (checked) {
+            flagged = false;
+        }
     }
 
     public void setMine(boolean mine) {
@@ -48,6 +51,9 @@ public class Tile {
 
     @Override
     public String toString() {
+        if (flagged) {
+            return "1";
+        }
         if (mine) {
             if (checked) {
                 return "¤";
