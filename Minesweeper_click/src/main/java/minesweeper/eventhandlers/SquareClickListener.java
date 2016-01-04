@@ -35,9 +35,6 @@ public class SquareClickListener implements MouseListener {
         } else {
             mouseTwoPressed = true;
         }
-        if (mouseOnePressed && mouseTwoPressed) {
-            System.out.println("dualClick");
-        }
     }
 
     @Override

@@ -20,6 +20,12 @@ public class Game {
         actions = 0;
     }
     
+    public Game(GameType gameType) {
+        this.gameGrid = new GameGrid(gameType);
+        this.over = false;
+        actions = 0;
+    }
+    
     public Game(GameGrid gameGrid) {
         this.gameGrid = gameGrid;
         this.over = false;
@@ -100,7 +106,7 @@ public class Game {
     }
 
     public void toggleFlag(Coordinate coordinate) {
-        if (over) {
+        if (over || getRemainingTiles() == 0) {
             return;
         }
         gameGrid.toggleFlag(coordinate);
@@ -111,6 +117,9 @@ public class Game {
     }
 
     public void clearSurrounding(Coordinate coordinate) {
+        if (over || getRemainingTiles() == 0) {
+            return;
+        }
         if (isChecked(coordinate)) {
             gameGrid.clearSurrounding(coordinate);
             actions++;
