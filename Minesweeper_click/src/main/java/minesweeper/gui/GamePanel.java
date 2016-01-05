@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
         updateGrid();
     }
 
-    public void updateGrid() {
+    public final void updateGrid() {
         for (Component component : this.getComponents()) {
             Square s = (Square) component;
             s.update();
@@ -36,6 +36,9 @@ public class GamePanel extends JPanel {
         if (statPanel != null) {
             statPanel.setActions(game.getActionCount());
             statPanel.setRemainingCount(game.getRemainingTiles());
+        }
+        if (game.getRemainingTiles() == 0) {
+            gui.checkScore(game.getGameType(), game.getActionCount());
         }
     }
 

@@ -41,5 +41,22 @@ class MineSweeperMenuBar extends JMenuBar {
         hardMenuItem.getAccessibleContext().setAccessibleDescription("Create new hard game");
         hardMenuItem.addActionListener(buttonActionListener);
         newMenu.add(hardMenuItem);
+        
+        JMenu scoreMenu = new JMenu("Scores");
+        scoreMenu.setMnemonic(KeyEvent.VK_S);
+        scoreMenu.getAccessibleContext().setAccessibleDescription("High scores and reset");
+        add(scoreMenu);
+        
+        JMenuItem scoreMenuItem = new JMenuItem("High Scores", KeyEvent.VK_H);
+        scoreMenuItem.setName("ScoreButton");
+        scoreMenuItem.getAccessibleContext().setAccessibleDescription("Show hig scores");
+        scoreMenuItem.addActionListener(buttonActionListener);
+        scoreMenu.add(scoreMenuItem);
+        
+        JMenuItem resetMenuItem = new JMenuItem("Clear scores", KeyEvent.VK_C);
+        resetMenuItem.setName("ResetButton");
+        resetMenuItem.getAccessibleContext().setAccessibleDescription("Clear high scores");
+        resetMenuItem.addActionListener(buttonActionListener);
+        scoreMenu.add(resetMenuItem);
     }
 }

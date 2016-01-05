@@ -139,4 +139,8 @@ public class Game implements Serializable {
     private void store() {
         ObjectStorage.storeObject(this, "savegame.dat");
     }
+    
+    public GameType getGameType() {
+        return gameGrid.getGameType();
+    }
 }

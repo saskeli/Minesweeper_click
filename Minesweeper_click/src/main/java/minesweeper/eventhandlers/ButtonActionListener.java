@@ -3,7 +3,7 @@ package minesweeper.eventhandlers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
-import minesweeper.gui.GamePanel;
+import minesweeper.gui.*;
 import minesweeper.util.GameType;
 
 /**
@@ -14,9 +14,11 @@ import minesweeper.util.GameType;
 public class ButtonActionListener implements ActionListener {
 
     private final GamePanel gamePanel;
+    private final Gui gui;
 
-    public ButtonActionListener(GamePanel gamePanel) {
+    public ButtonActionListener(GamePanel gamePanel, Gui gui) {
         this.gamePanel = gamePanel;
+        this.gui = gui;
     }
 
     @Override
@@ -31,8 +33,17 @@ public class ButtonActionListener implements ActionListener {
             case "HardButton":
                 gamePanel.startNewGame(GameType.HARD);
                 break;
-            default:
+            case "CustomButton":
                 gamePanel.startNewGame(GameType.CUSTOM);
+                break;
+            case "ScoreButton":
+                gui.showHighScores();
+                break;
+            case "ResetButton":
+                gui.resetScores();
+                break;
+            default:
+                gamePanel.startNewGame();
                 break;
         }
     }
