@@ -335,7 +335,7 @@ public class GameGridTest {
     
     @Test
     public void flagToggle() {
-        smallInjectedGridOne.toggleFlag(new Coordinate(0, 0));
+        smallInjectedGridOne.toggleFlag(new Coordinate(0, 1));
         assertEquals(true, smallInjectedGridOne.isFlagged(new Coordinate(0, 0)));
     }
 }

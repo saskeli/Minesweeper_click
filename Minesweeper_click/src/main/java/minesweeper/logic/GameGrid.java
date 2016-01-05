@@ -1,5 +1,6 @@
 package minesweeper.logic;
 
+import java.io.Serializable;
 import java.util.*;
 import minesweeper.util.*;
 
@@ -8,7 +9,7 @@ import minesweeper.util.*;
  *
  * @author Saskeli
  */
-public class GameGrid {
+public class GameGrid implements Serializable {
 
     private final Tile[][] tiles;
     private boolean started;

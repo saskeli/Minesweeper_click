@@ -1,5 +1,6 @@
 package minesweeper.util;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -7,7 +8,7 @@ import java.util.*;
  * 
  * @author Saskeli
  */
-public class Coordinate {
+public class Coordinate implements Serializable {
     private final int row;
     private final int column;
 

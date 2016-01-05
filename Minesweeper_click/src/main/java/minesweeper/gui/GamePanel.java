@@ -25,6 +25,7 @@ public class GamePanel extends JPanel {
         this.gui = gui;
         squareClickListener = new SquareClickListener(game, this);
         populateGrid();
+        updateGrid();
     }
 
     public void updateGrid() {

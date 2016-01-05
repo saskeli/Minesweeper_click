@@ -1,12 +1,14 @@
 
 package minesweeper.logic;
 
+import java.io.Serializable;
+
 /**
  * Abstract representation of a minesweeper tile
  * 
  * @author Saskeli
  */
-public class Tile {
+public class Tile implements Serializable {
     private boolean mine;
     private boolean checked;
     private boolean flagged;

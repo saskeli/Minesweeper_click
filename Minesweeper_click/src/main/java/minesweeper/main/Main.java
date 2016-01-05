@@ -1,14 +1,21 @@
 package minesweeper.main;
 
+import java.io.Serializable;
 import minesweeper.gui.Gui;
 import javax.swing.SwingUtilities;
-import minesweeper.util.GameType;
+import minesweeper.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            Game g = new Game(GameType.NORMAL);
+            Serializable object = ObjectStorage.retrieveObject("savegame.dat");
+            Game g;
+            if (object != null) {
+                g = (Game) object;
+            } else {
+                g = new Game(GameType.NORMAL);
+            }
             SwingUtilities.invokeLater(new Gui(g));
         }
     }

@@ -1,15 +1,15 @@
 package minesweeper.main;
 
-import minesweeper.util.Coordinate;
+import java.io.Serializable;
 import minesweeper.logic.*;
-import minesweeper.util.GameType;
+import minesweeper.util.*;
 
 /**
  * Abstract representation of a minesweeper game.
  * 
  * @author Saskeli
  */
-public class Game {
+public class Game implements Serializable {
     private GameGrid gameGrid;
     private boolean over;
     private int actions;
@@ -18,23 +18,27 @@ public class Game {
         this.gameGrid = new GameGrid(widht, height, mines);
         this.over = false;
         actions = 0;
+        store();
     }
     
     public Game(GameType gameType) {
         this.gameGrid = new GameGrid(gameType);
         this.over = false;
         actions = 0;
+        store();
     }
     
     public Game(GameGrid gameGrid) {
         this.gameGrid = gameGrid;
         this.over = false;
         actions = 0;
+        store();
     }
 
     public Game() {
         this(30, 16, 99);
         actions = 0;
+        store();
     }
     
     public void clear(Coordinate coordinate) {
@@ -47,6 +51,7 @@ public class Game {
         boolean cleared = gameGrid.clear(coordinate);
         actions++;
         over = !cleared;
+        store();
     }
     
     public void newGame(int width, int height, int mines) {
@@ -62,12 +67,14 @@ public class Game {
         gameGrid = new GameGrid(width, height, mines);
         actions = 0;
         over = false;
+        store();
     }
     
     public void newGame(GameType gameType) {
         gameGrid = new GameGrid(gameType);
         actions = 0;
         over = false;
+        store();
     }
     
     public void newGame() {
@@ -76,6 +83,7 @@ public class Game {
         } else {
             newGame(gameGrid.getGameType());
         }
+        store();
     }
     
     public int gameWidth() {
@@ -110,6 +118,7 @@ public class Game {
             return;
         }
         gameGrid.toggleFlag(coordinate);
+        store();
     }
 
     public boolean isChecked(Coordinate coordinate) {
@@ -124,5 +133,10 @@ public class Game {
             gameGrid.clearSurrounding(coordinate);
             actions++;
         }
+        store();
+    }
+
+    private void store() {
+        ObjectStorage.storeObject(this, "savegame.dat");
     }
 }
