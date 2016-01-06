@@ -12,10 +12,21 @@ import minesweeper.util.GameType;
  * @author dongesa
  */
 public class ButtonActionListener implements ActionListener {
-
+    /**
+     * Visual representation of the minsesweeper grid
+     */
     private final GamePanel gamePanel;
+    /**
+     * parent GUI component
+     */
     private final Gui gui;
 
+    /**
+     * ButtonActionListener constructor
+     * 
+     * @param gamePanel The Game panel object of the GUI frame
+     * @param gui   The GUI object
+     */
     public ButtonActionListener(GamePanel gamePanel, Gui gui) {
         this.gamePanel = gamePanel;
         this.gui = gui;
@@ -34,7 +45,7 @@ public class ButtonActionListener implements ActionListener {
                 gamePanel.startNewGame(GameType.HARD);
                 break;
             case "CustomButton":
-                gamePanel.startNewGame(GameType.CUSTOM);
+                gui.createCustomGame();
                 break;
             case "ScoreButton":
                 gui.showHighScores();

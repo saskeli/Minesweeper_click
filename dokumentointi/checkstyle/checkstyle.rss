@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2016</copyright>
     <item>
-      <title>File: 12,
-             Errors: 0,
+      <title>File: 16,
+             Errors: 1,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,63 @@ under the License.
           <tbody>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#minesweeper.gui.Square.java">minesweeper/gui/Square.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#minesweeper.eventhandlers.SquareClickListener.java">minesweeper/eventhandlers/SquareClickListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#minesweeper.gui.StatPanel.java">minesweeper/gui/StatPanel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#minesweeper.main.Game.java">minesweeper/main/Game.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#minesweeper.score.Scores.java">minesweeper/score/Scores.java</a>
                 </td>
                 <td>
                   0
@@ -69,26 +125,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#minesweeper.gui.Gui.java">minesweeper/gui/Gui.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#minesweeper.gui.Square.java">minesweeper/gui/Square.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#minesweeper.eventhandlers.SquareClickListener.java">minesweeper/eventhandlers/SquareClickListener.java</a>
+                  <a href="${project.url}/checkstyle.html#minesweeper.score.Score.java">minesweeper/score/Score.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +242,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#minesweeper.gui.StatPanel.java">minesweeper/gui/StatPanel.java</a>
+                  <a href="${project.url}/checkstyle.html#minesweeper.util.GameType.java">minesweeper/util/GameType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#minesweeper.util.ObjectStorage.java">minesweeper/util/ObjectStorage.java</a>
                 </td>
                 <td>
                   0

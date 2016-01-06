@@ -112,7 +112,7 @@ public class GameGridTest {
         list.add(new Coordinate(1, 2));
         list.add(new Coordinate(3, 5));
         Coordinate target = new Coordinate(3, 5);
-        assertEquals(true, randomGameGrid.isOnList(target, list));
+        assertEquals(true, list.contains(target));
     }
     
     @Test
@@ -121,7 +121,7 @@ public class GameGridTest {
         list.add(new Coordinate(1, 2));
         list.add(new Coordinate(3, 5));
         Coordinate target = new Coordinate(4, 5);
-        assertEquals(false, randomGameGrid.isOnList(target, list));
+        assertEquals(false, list.contains(target));
     }
     
     @Test

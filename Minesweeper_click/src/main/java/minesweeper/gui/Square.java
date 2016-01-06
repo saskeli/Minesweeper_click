@@ -13,10 +13,27 @@ import minesweeper.util.Coordinate;
  * @author Saskeli
  */
 public class Square extends JLabel {
-    private Game game;
-    private Coordinate coordinate;
+    /**
+     * Game interface
+     */
+    private final Game game;
+    /**
+     * Coordinate of tile that this square represents
+     */
+    private final Coordinate coordinate;
+    /**
+     * The default color of this square. 
+     * This is used when the square is neither checked nor flagged.
+     */
     private final Color defaultColor;
 
+    /**
+     * Representation of a minesweeper square for GUI
+     * 
+     * @param game        the game this square is tied to
+     * @param coordinate  the game coordiante that this square represents
+     * @param listener    the actions listener for this square
+     */
     public Square(Game game, Coordinate coordinate, SquareClickListener listener) {
         super("");
         this.game = game;
@@ -30,10 +47,16 @@ public class Square extends JLabel {
         defaultColor = this.getBackground();
     }
 
+    /**
+     * @return  the coordinate of this square
+     */
     public Coordinate getCoordinate() {
         return coordinate;
     }
 
+    /**
+     * Refresh the appearance of this Square
+     */
     public void update() {
         int tileState = game.getTileState(coordinate);
         if (game.isFlagged(coordinate)) {
@@ -57,22 +80,5 @@ public class Square extends JLabel {
             setText("" + tileState);
             setBorder(BorderFactory.createLineBorder(Color.GRAY));
         }
-    }
-
-    public void toggleFlag() {
-        game.toggleFlag(coordinate);
-        if (isFlagged()) {
-            setBackground(defaultColor);
-        } else {
-            
-        }
-    }
-
-    public boolean isFlagged() {
-        return game.isFlagged(coordinate);
-    }
-
-    public boolean isCleared() {
-        return (game.isChecked(coordinate));
     }
 }

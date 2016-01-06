@@ -12,12 +12,23 @@ import minesweeper.main.Game;
  * @author Saskeli
  */
 public class SquareClickListener implements MouseListener {
-
+    /**
+     * Game interface
+     */
     private final Game game;
+    /**
+     * Visual representation of the game grid
+     */
     private final GamePanel gamePanel;
     private boolean mouseOnePressed = false;
     private boolean mouseTwoPressed = false;
 
+    /**
+     * Event handler class for tile clicks.
+     * 
+     * @param game  The game logic interface
+     * @param gamePanel     The game panel object of the GUI frame.
+     */
     public SquareClickListener(Game game, GamePanel gamePanel) {
         this.game = game;
         this.gamePanel = gamePanel;

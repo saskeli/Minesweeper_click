@@ -1,27 +1,48 @@
 [note:Game logic{bg:pink}]
 [note:Gui components{bg:green}]
 
-[Game{bg:pink}]1<-1[Gui{bg:green}]
-[Game]++->1[GameGrid]
-[Game]<-[GamePanel]
-[Game]1-1[Square]
+[GUI{bg:green}]1->1[Game{bg:pink}]
+[GUI]->1[Scores{bg:lightblue}]
+[GUI]1-1[GamePanel{bg:green}]
+[GUI]1<-1[ButtonActionListener{bg:green}]
+[GUI]->1[StatPanel{bg:green}]
+[GUI]->1[MineSweeperMenuBar{bg:green}]
+[GUI]-.->[<<Enum>>;GameType]
+
+[Game]++->1[GameGrid{bg:pink}]
 [Game]-.->[Coordinate{bg:yellow}]
-[Game]1<-1[SquareClickListener]
+[Game]-.->[<<Enum>>;GameType]
+[Game]-.->[<<Static>>;ObjectStorage]
 
-[Gui]->1[GamePanel{bg:green}]
-[Gui]1->1[MineSweeperMenuBar]
-[Gui]-.->[ButtonActionListener{bg:green}]
-[Gui]1<-1[SquareClickListener{bg:green}]
+[GameGrid]++->1..*[Tile{bg:pink}]
+[GameGrid]++->max coordinate 1[Coordinate]
+[GameGrid]-.->[Coordinate]
+[GameGrid]->1[<<Enum>>;GameType{bg:yellow}]
 
-[GameGrid{bg:pink}]++->1..*[Tile{bg:pink}]
-[GameGrid]1-1[Coordinate]
+[Scores]++->0..4[Score{bg:lightblue}]
+[Scores]-.->[<<Static>>;ObjectStorage{bg:yellow}]
+[Scores]-.->[<<Enum>>;GameType]
 
-[GamePanel]->[StatPanel{bg:green}]
-[GamePanel]1<-1[ButtonActionListener]
-[GamePanel]-[SquareClickListener]
-[GamePanel]++->*[Square{bg:green}]
+[Score]->1[<<Enum>>;GameType]
 
-[MineSweeperMenuBar{bg:green}]1-1[ButtonActionListener]
-[Square]-[SquareClickListener]
-[Square]1->1[Coordinate]
-[StatPanel]-[ButtonActionListener]
+[GamePanel]->1[Game]
+[GamePanel]->1[StatPanel]
+[GamePanel]1-1[SquareClickListener{bg:green}]
+[GamePanel]->1[Square{bg:green}]
+[GamePanel]-.->[Coordinate]
+[GamePanel]-.->[<<Enum>>;GameType]
+
+[ButtonActionListener]->1[GamePanel]
+[ButtonActionListener]-.->[<<Enum>>;GameType]
+
+[SquareClickListener]->1[Game]
+[SquareClickListener]1-1..*[Square]
+
+[MineSweeperMenuBar]->1[ButtonActionListener]
+
+[Coordinate]-.->[Coordinate]
+
+[Square]->1[Coordinate]
+[Square]->1[Game]
+
+[StatPanel]->1[ButtonActionListener]

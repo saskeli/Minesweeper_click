@@ -1,0 +1,6 @@
+minesweeper.eventhandlers
+minesweeper.gui
+minesweeper.logic
+minesweeper.main
+minesweeper.score
+minesweeper.util

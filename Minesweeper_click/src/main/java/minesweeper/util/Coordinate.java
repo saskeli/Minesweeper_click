@@ -9,7 +9,13 @@ import java.util.*;
  * @author Saskeli
  */
 public class Coordinate implements Serializable {
+    /**
+     * Row position of this Coordinate
+     */
     private final int row;
+    /**
+     * Column position of this Coordinate
+     */
     private final int column;
 
     /**
