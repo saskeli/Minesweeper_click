@@ -12,7 +12,7 @@ Pelaaja
 
 ## Toiminnot
 * Katso tuloksia.
-* Käynnistä peli (oletusarvoisesti käynnistyy uudella pelillä [ainakin jollen ehdi tehdä savestateja])
+* Käynnistä peli (käynnistyy samaan pisteeseen kun peli sammui viimeksi tai uuteen NORMAL peliin jollei savestatea löydy)
 * Vaihda pelikentän tyyppiä (eli kokoa)
 
 
