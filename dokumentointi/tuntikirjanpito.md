@@ -40,6 +40,7 @@ pvm        | aika | kohde |
 2015-01-03 | 1h   | Arvaus. Tein jotain 3.1. mutten muista mitä. |
 2015-01-04 | 3,5h | Yleistä kehitystä, korjailua, ja testailua. |
 2015-01-05 | 5,5h | Lisätty pelin tallennus ja tuloslistat.  |
+2015-01-06 | 7h   | Aihemäärittelyn mukainen toiminnallisuus tehty. Alustavat javadocit tehty. Sekevnssikaaviot tehty. Luokkakaaviot päivitetty|
 
 ## Yhteensä
 
@@ -49,5 +50,5 @@ DL      | aika   |
 2       | 8h     |
 3       | 14h    |
 4       | 10h    |
-5       | 10h    |
-**yht** | **44** |
+5       | 17h    |
+**yht** | **51** |
