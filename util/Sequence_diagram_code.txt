@@ -1,0 +1,47 @@
+title Minesweeper_click startup (simplified)
+
+:Main->+":ObjectStorage": retrieveObject("savegame.dat")
+":ObjectStorage"->*"game:Game":
+":ObjectStorage"-->-":Main": "game:Game"
+opt if game == null
+    :Main->"game:Game": game = new Game(GameType.NORMAL)
+end
+:Main->*"gui:Gui": new Gui(game:Game)
+:Main->":SwingUtilities": invokeLater(gui:Gui)
+:SwingUtilities->+"gui:Gui": run()
+
+
+
+title Minesweeper_click: tile click logic
+
+:SquareClickListener->+"e:MouseEvent": getSource()
+e:MouseEvent-->-":SquareClickListener": "s:Square"
+:SquareClickListener->"s:Square": coord:Coordinate = getCoordinate()
+:SquareClickListener->+"game:Game": clear(coord:Coordinate)
+alt if (game is over | remaining tiles == 0 | is already cleared)
+    game:Game-->":SquareClickListener": 
+else else 
+    game:Game->+"gameGrid:GameGrid": clear(coord:Coordinate)
+    alt if (coordinate is not valid | coordinate is flagged)
+        gameGrid:GameGrid-->"game:Game": "result = true"
+    else else 
+        opt if (game has not been started)
+            gameGrid:GameGrid->+"gameGrid:GameGrid": generateTiles(coord)
+            gameGrid:GameGrid-->-"gameGrid:GameGrid": started = true
+        end
+        gameGrid:GameGrid->"tile:Tile": setChecked(true)
+        gameGrid:GameGrid->"tile:Tile": tileIsMine = isMine
+        opt if (tileIsMine)
+            gameGrid:GameGrid->"gameGrid:GameGrid": clearMines()
+            gameGrid:GameGrid-->"game:Game": "result = false"
+        end
+        gameGrid:GameGrid->"gameGrid:GameGrid": int surroundingMines = surroundingMines(coord)
+        opt if (surroundingMines == 0)
+            gameGrid:GameGrid->"gameGrid:GameGrid": clearSurroundingTiles(coord)
+        end
+        gameGrid:GameGrid-->-"game:Game": result = true
+    end
+    game:Game->"game:Game": gameOver = result
+    game:Game-->-":SquareClickListener":
+end
+:SquareClickListener->"gamePanel:GamePanel": updateGrid()
