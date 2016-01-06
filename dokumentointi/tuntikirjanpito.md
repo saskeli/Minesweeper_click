@@ -32,15 +32,16 @@ pvm        | aika | kohde |
 2015-12-29 | 2h   | ActionListeneri lisätty ja gui komponentteja kirjotettu. |
 2015-12-30 | 1h   | Uusi action listener joka ei toimi. Huomenna korjataan. |
 2015-12-31 | 3h   | Sielu irtoaa swingin kanssa. Enpä siis korjannut. |
-2015-12-02 | 4h   | Isoja muutoksia UIhin. Aika vähän muuhun. Toimii taas vähän paremmin. Uudet raportit ja päivitetty luokkakaavio. |
+2016-01-02 | 4h   | Isoja muutoksia UIhin. Aika vähän muuhun. Toimii taas vähän paremmin. Uudet raportit ja päivitetty luokkakaavio. |
 
 ## Deadline 5
 pvm        | aika | kohde |
 -----------|------|-------|
-2015-01-03 | 1h   | Arvaus. Tein jotain 3.1. mutten muista mitä. |
-2015-01-04 | 3,5h | Yleistä kehitystä, korjailua, ja testailua. |
-2015-01-05 | 5,5h | Lisätty pelin tallennus ja tuloslistat.  |
-2015-01-06 | 7h   | Aihemäärittelyn mukainen toiminnallisuus tehty. Alustavat javadocit tehty. Sekevnssikaaviot tehty. Luokkakaaviot päivitetty|
+2016-01-03 | 1h   | Arvaus. Tein jotain 3.1. mutten muista mitä. |
+2016-01-04 | 3,5h | Yleistä kehitystä, korjailua, ja testailua. |
+2016-01-05 | 5,5h | Lisätty pelin tallennus ja tuloslistat.  |
+2016-01-06 | 7h   | Aihemäärittelyn mukainen toiminnallisuus tehty. Alustavat javadocit tehty. Sekevnssikaaviot tehty. Luokkakaaviot päivitetty|
+2016-01-06 | 1h   | Koodikatselmointi 2 |
 
 ## Yhteensä
 
@@ -50,5 +51,5 @@ DL      | aika   |
 2       | 8h     |
 3       | 14h    |
 4       | 10h    |
-5       | 17h    |
-**yht** | **51** |
+5       | 18h    |
+**yht** | **52** |
