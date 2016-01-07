@@ -40,8 +40,10 @@
                 <configuration>
                     <targetClasses>
                         <param>minesweeper.logic*</param>
+                        <param>minesweeper.util*</param>
                     </targetClasses>
                     <targetTests>
+                        <param>util*</param>
                         <param>logic*</param>
                     </targetTests>
                 </configuration>
