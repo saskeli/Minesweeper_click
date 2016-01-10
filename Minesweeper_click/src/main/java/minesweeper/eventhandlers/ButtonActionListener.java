@@ -13,16 +13,16 @@ import minesweeper.util.GameType;
  */
 public class ButtonActionListener implements ActionListener {
     /**
-     * Visual representation of the minsesweeper grid
+     * Visual representation of the minsesweeper grid.
      */
     private final GamePanel gamePanel;
     /**
-     * parent GUI component
+     * parent GUI component.
      */
     private final Gui gui;
 
     /**
-     * ButtonActionListener constructor
+     * ButtonActionListener constructor.
      * 
      * @param gamePanel The Game panel object of the GUI frame
      * @param gui   The GUI object

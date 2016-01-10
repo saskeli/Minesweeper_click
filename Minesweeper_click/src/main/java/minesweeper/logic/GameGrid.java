@@ -11,7 +11,7 @@ import minesweeper.util.*;
  */
 public class GameGrid implements Serializable {
     /**
-     * The actual game grid. A square array of tiles
+     * The actual game grid. A square array of tiles.
      */
     private final Tile[][] tiles;
     /**
@@ -67,7 +67,7 @@ public class GameGrid implements Serializable {
      * Abstract representation of a minegrid.
      * Note: With the CUSTOM game type. A HARD game will be started instead.
      * 
-     * @param gameType the type of game to create
+     * @param gameType  the type of game to create
      */
     public GameGrid(GameType gameType) {
         if (gameType == GameType.EASY) {
@@ -97,10 +97,10 @@ public class GameGrid implements Serializable {
 
     /**
      * get the number of mines that are known to be adjacent to 
-     * the given coordinate
+     * the given coordinate.
      * 
-     * @param coord the coodinate to check around
-     * @return      0 if the game has not started, 9 if the tile is a mine, and 0-8 otherwise.
+     * @param coord  the coodinate to check around
+     * @return       0 if the game has not started, 9 if the tile is a mine, and 0-8 otherwise.
      */
     public int getValue(Coordinate coord) {
         if (!started) {
@@ -116,8 +116,8 @@ public class GameGrid implements Serializable {
      * Check if a given coordinate is valid.
      * I.e. that the coordinate is withing the curren game.
      * 
-     * @param coord the coordinate to check
-     * @return      true if the coordinate is on the grid.
+     * @param coord  the coordinate to check
+     * @return       true if the coordinate is on the grid.
      */
     public boolean isValid(Coordinate coord) {
         return coord.isValid(max);
@@ -126,8 +126,8 @@ public class GameGrid implements Serializable {
     /**
      * Get the number of mines known to be adjacent to a given coordinate.
      * 
-     * @param coord Coordinate to check around
-     * @return      Number of mines 0-8.
+     * @param coord  the coordinate to check around
+     * @return       number of mines 0-8.
      */
     private int surroundingMines(Coordinate coord) {
         int adjacentMines = 0;
@@ -198,7 +198,7 @@ public class GameGrid implements Serializable {
     }
 
     /**
-     * Generates a randomized list of mines
+     * Generates a randomized list of mines.
      * 
      * @param mineList        the list of to populate
      * @param specialSquares  the minimum number of squares to leave clear
@@ -333,7 +333,7 @@ public class GameGrid implements Serializable {
     }
 
     /**
-     * @return the number of mines specified by the constructor of this GameGrid
+     * @return the number of mines specified by the constructor of this GameGrid.
      */
     public int getMines() {
         return mines;
@@ -353,7 +353,7 @@ public class GameGrid implements Serializable {
     }
 
     /**
-     * Toggles the flag of the tile at the specified coordinate
+     * Toggles the flag of the tile at the specified coordinate.
      * 
      * @param coordinate  the coordinate for the tile to toggle
      */
@@ -370,21 +370,23 @@ public class GameGrid implements Serializable {
      * the number of flags adjacent to the tile.
      * 
      * @param coordinate  the coordinate to clear around
+     * @return            false if a mine was hit, true otherwise.
      */
-    public void clearSurrounding(Coordinate coordinate) {
+    public boolean clearSurroundingNonFlagged(Coordinate coordinate) {
         if (surroundingMines(coordinate) == surroundingFlags(coordinate)) {
-            clearSurroundingTiles(coordinate);
+            return clearSurroundingTiles(coordinate);
         }
+        return true;
     }
 
     /**
      * Get the number of flagged tiles surrounding the tile specified
-     * by the given coordinate
+     * by the given coordinate.
      * 
      * @param coordinate  the coordinate to check around
      * @return            the number of flags surrounding the coordinate
      */
-    private int surroundingFlags(Coordinate coordinate) {
+    public int surroundingFlags(Coordinate coordinate) {
         int adjacentFlags = 0;
         for (Coordinate coord : coordinate.getAdjacentCoordinates(max)) {
             if (tiles[coord.getRow()][coord.getColumn()].isFlagged()) {
@@ -395,13 +397,18 @@ public class GameGrid implements Serializable {
     }
 
     /**
-     * Calls clear for all the coordinates surrounding the specified coordiante
+     * Calls clear for all the coordinates surrounding the specified coordiante.
      * 
      * @param coord  the coordinate to clear around
      */
-    private void clearSurroundingTiles(Coordinate coord) {
+    private boolean clearSurroundingTiles(Coordinate coord) {
+        boolean mineNotHit = true;
         for (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
-            clear(coordinate);
+            boolean wasNotMine = clear(coordinate);
+            if (!wasNotMine) {
+                mineNotHit = false;
+            }
         }
+        return mineNotHit;
     }
 }

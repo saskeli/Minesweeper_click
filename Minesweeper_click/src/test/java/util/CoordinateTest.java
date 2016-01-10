@@ -58,7 +58,7 @@ public class CoordinateTest {
     @Test
     public void coordinateHashCodeWorksWhenEquals() {
         Coordinate d = new Coordinate(4, 6);
-        assertEquals(c.hashCode(), d.hashCode());
+        assertEquals(24345, d.hashCode());
     }
     
     @Test

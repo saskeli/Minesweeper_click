@@ -7,32 +7,33 @@ import minesweeper.eventhandlers.SquareClickListener;
 import minesweeper.main.Game;
 import minesweeper.util.Coordinate;
 import minesweeper.util.GameType;
+import minesweeper.util.ObjectStorage;
 
 /**
- * Class describing minefield in JPanel form
+ * Class describing minefield in JPanel form.
  *
  * @author Saskeli
  */
 public class GamePanel extends JPanel {
     /**
-     * Game logic interface
+     * Game logic interface.
      */
     private final Game game;
     /**
-     * Gui parent
+     * Gui parent.
      */
     private final Gui gui;
     /**
-     * Panel to be updated with game stats
+     * Panel to be updated with game stats.
      */
     private StatPanel statPanel = null;
     /**
-     * Action listener to be used with all Squares
+     * Action listener to be used with all Squares.
      */
     private final SquareClickListener squareClickListener;
 
     /**
-     * Class describing minefield in JPanel form
+     * Class describing minefield in JPanel form.
      * 
      * @param game  Game logic interface
      * @param gui   The parent GUI.
@@ -46,7 +47,7 @@ public class GamePanel extends JPanel {
     }
     
     /**
-     * Refreshes the visual representation of the game
+     * Refreshes the visual representation of the game.
      */
     public final void updateGrid() {
         for (Component component : this.getComponents()) {
@@ -68,7 +69,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Starts a new game with the same parameters as the original
-     * and updates the visual representation
+     * and updates the visual representation.
      */
     public void startNewGame() {
         game.newGame();
@@ -76,7 +77,7 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * Starts an new custom game and updates the visual representation
+     * Starts an new custom game and updates the visual representation.
      * 
      * @param width     Width of the game to be created
      * @param height    height of the game to be created
@@ -91,7 +92,7 @@ public class GamePanel extends JPanel {
     
     /**
      * Starts a new game with one of the standart settings.
-     * Note: Custom will start a hard game
+     * Note: Custom will start a hard game.
      * 
      * @param gameType  Type of game to be started
      */
@@ -104,7 +105,7 @@ public class GamePanel extends JPanel {
     
     /**
      * Add the sqares to the gird and the action listener 
-     * to the sqares
+     * to the sqares.
      */
     private void populateGrid() {
         setLayout(new GridLayout(game.gameHeight(), game.gameWidth()));

@@ -19,7 +19,7 @@
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../minesweeper/logic/GameGrid.html">GameGrid</a> <strong class="jxr_keyword">implements</strong> Serializable {
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">     * The actual game grid. A square array of tiles</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">     * The actual game grid. A square array of tiles.</em>
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../minesweeper/logic/Tile.html">Tile</a>[][] tiles;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>      <em class="jxr_javadoccomment">/**</em>
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     * Abstract representation of a minegrid.</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">     * Note: With the CUSTOM game type. A HARD game will be started instead.</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     * @param gameType the type of game to create</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     * @param gameType  the type of game to create</em>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">public</strong> <a href="../../minesweeper/logic/GameGrid.html">GameGrid</a>(<a href="../../minesweeper/util/GameType.html">GameType</a> gameType) {
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>          <strong class="jxr_keyword">if</strong> (gameType == GameType.EASY) {
@@ -105,10 +105,10 @@
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * get the number of mines that are known to be adjacent to </em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     * the given coordinate</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     * the given coordinate.</em>
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">     * @param coord the coodinate to check around</em>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_javadoccomment">     * @return      0 if the game has not started, 9 if the tile is a mine, and 0-8 otherwise.</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">     * @param coord  the coodinate to check around</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_javadoccomment">     * @return       0 if the game has not started, 9 if the tile is a mine, and 0-8 otherwise.</em>
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getValue(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coord) {
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">if</strong> (!started) {
@@ -124,8 +124,8 @@
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * Check if a given coordinate is valid.</em>
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     * I.e. that the coordinate is withing the curren game.</em>
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * @param coord the coordinate to check</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     * @return      true if the coordinate is on the grid.</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * @param coord  the coordinate to check</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     * @return       true if the coordinate is on the grid.</em>
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isValid(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coord) {
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">return</strong> coord.isValid(max);
@@ -134,8 +134,8 @@
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">     * Get the number of mines known to be adjacent to a given coordinate.</em>
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * @param coord Coordinate to check around</em>
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * @return      Number of mines 0-8.</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * @param coord  the coordinate to check around</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * @return       number of mines 0-8.</em>
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> surroundingMines(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coord) {
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">int</strong> adjacentMines = 0;
@@ -206,7 +206,7 @@
 <a class="jxr_linenumber" name="L198" href="#L198">198</a>     }
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> 
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * Generates a randomized list of mines</em>
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * Generates a randomized list of mines.</em>
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">     * @param mineList        the list of to populate</em>
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     * @param specialSquares  the minimum number of squares to leave clear</em>
@@ -341,7 +341,7 @@
 <a class="jxr_linenumber" name="L333" href="#L333">333</a>     }
 <a class="jxr_linenumber" name="L334" href="#L334">334</a> 
 <a class="jxr_linenumber" name="L335" href="#L335">335</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">     * @return the number of mines specified by the constructor of this GameGrid</em>
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">     * @return the number of mines specified by the constructor of this GameGrid.</em>
 <a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L338" href="#L338">338</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getMines() {
 <a class="jxr_linenumber" name="L339" href="#L339">339</a>         <strong class="jxr_keyword">return</strong> mines;
@@ -361,7 +361,7 @@
 <a class="jxr_linenumber" name="L353" href="#L353">353</a>     }
 <a class="jxr_linenumber" name="L354" href="#L354">354</a> 
 <a class="jxr_linenumber" name="L355" href="#L355">355</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">     * Toggles the flag of the tile at the specified coordinate</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">     * Toggles the flag of the tile at the specified coordinate.</em>
 <a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">     * @param coordinate  the coordinate for the tile to toggle</em>
 <a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">     */</em>
@@ -378,41 +378,48 @@
 <a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">     * the number of flags adjacent to the tile.</em>
 <a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     * @param coordinate  the coordinate to clear around</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> clearSurrounding(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coordinate) {
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>         <strong class="jxr_keyword">if</strong> (surroundingMines(coordinate) == surroundingFlags(coordinate)) {
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>             clearSurroundingTiles(coordinate);
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>         }
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>     }
-<a class="jxr_linenumber" name="L379" href="#L379">379</a> 
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">     * Get the number of flagged tiles surrounding the tile specified</em>
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">     * by the given coordinate</em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">     * @param coordinate  the coordinate to check around</em>
-<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * @return            the number of flags surrounding the coordinate</em>
-<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> surroundingFlags(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coordinate) {
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>         <strong class="jxr_keyword">int</strong> adjacentFlags = 0;
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>         <strong class="jxr_keyword">for</strong> (Coordinate coord : coordinate.getAdjacentCoordinates(max)) {
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>             <strong class="jxr_keyword">if</strong> (tiles[coord.getRow()][coord.getColumn()].isFlagged()) {
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>                 adjacentFlags += 1;
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>             }
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>         }
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>         <strong class="jxr_keyword">return</strong> adjacentFlags;
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>     }
-<a class="jxr_linenumber" name="L396" href="#L396">396</a> 
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     * Calls clear for all the coordinates surrounding the specified coordiante</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * </em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * @param coord  the coordinate to clear around</em>
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> clearSurroundingTiles(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coord) {
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>         <strong class="jxr_keyword">for</strong> (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>             clear(coordinate);
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>         }
-<a class="jxr_linenumber" name="L406" href="#L406">406</a>     }
-<a class="jxr_linenumber" name="L407" href="#L407">407</a> }
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * @return            false if a mine was hit, true otherwise.</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> clearSurroundingNonFlagged(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coordinate) {
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>         <strong class="jxr_keyword">if</strong> (surroundingMines(coordinate) == surroundingFlags(coordinate)) {
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>             <strong class="jxr_keyword">return</strong> clearSurroundingTiles(coordinate);
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>         }
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>     }
+<a class="jxr_linenumber" name="L381" href="#L381">381</a> 
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     * Get the number of flagged tiles surrounding the tile specified</em>
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">     * by the given coordinate.</em>
+<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     * @param coordinate  the coordinate to check around</em>
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">     * @return            the number of flags surrounding the coordinate</em>
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> surroundingFlags(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coordinate) {
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>         <strong class="jxr_keyword">int</strong> adjacentFlags = 0;
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>         <strong class="jxr_keyword">for</strong> (Coordinate coord : coordinate.getAdjacentCoordinates(max)) {
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>             <strong class="jxr_keyword">if</strong> (tiles[coord.getRow()][coord.getColumn()].isFlagged()) {
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>                 adjacentFlags += 1;
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>             }
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>         }
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>         <strong class="jxr_keyword">return</strong> adjacentFlags;
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>     }
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> 
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * Calls clear for all the coordinates surrounding the specified coordiante.</em>
+<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L402" href="#L402">402</a> <em class="jxr_javadoccomment">     * @param coord  the coordinate to clear around</em>
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> clearSurroundingTiles(<a href="../../minesweeper/util/Coordinate.html">Coordinate</a> coord) {
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>         <strong class="jxr_keyword">boolean</strong> mineNotHit = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>         <strong class="jxr_keyword">for</strong> (Coordinate coordinate : coord.getAdjacentCoordinates(max)) {
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>             <strong class="jxr_keyword">boolean</strong> wasNotMine = clear(coordinate);
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>             <strong class="jxr_keyword">if</strong> (!wasNotMine) {
+<a class="jxr_linenumber" name="L409" href="#L409">409</a>                 mineNotHit = false;
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>             }
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>         }
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>         <strong class="jxr_keyword">return</strong> mineNotHit;
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>     }
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2016. All rights reserved.</div>

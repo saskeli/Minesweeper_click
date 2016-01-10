@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Game Type enumerator
  * 
- * @author dongesa
+ * @author Saskeli
  */
 public enum GameType implements Serializable {
     /**

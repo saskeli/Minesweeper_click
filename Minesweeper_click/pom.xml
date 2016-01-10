@@ -17,6 +17,12 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-swing-junit</artifactId>
+            <version>3.0.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -41,10 +47,14 @@
                     <targetClasses>
                         <param>minesweeper.logic*</param>
                         <param>minesweeper.util*</param>
+                        <param>minesweeper.main*</param>
+                        <param>minesweeper.score*</param>
                     </targetClasses>
                     <targetTests>
                         <param>util*</param>
                         <param>logic*</param>
+                        <param>main*</param>
+                        <param>score*</param>
                     </targetTests>
                 </configuration>
             </plugin>

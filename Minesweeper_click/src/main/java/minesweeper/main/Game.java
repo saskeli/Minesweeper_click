@@ -11,15 +11,15 @@ import minesweeper.util.*;
  */
 public class Game implements Serializable {
     /**
-     * The abstract game grid of the current game
+     * The abstract game grid of the current game.
      */
     private GameGrid gameGrid;
     /**
-     * true if this game is over
+     * true if this game is over.
      */
     private boolean over;
     /**
-     * Number of action taken so far during the game
+     * Number of action taken so far during the game.
      */
     private int actions;
 
@@ -67,8 +67,6 @@ public class Game implements Serializable {
      */
     public Game() {
         this(GameType.HARD);
-        actions = 0;
-        store();
     }
     
     /**
@@ -90,7 +88,7 @@ public class Game implements Serializable {
     }
     
     /**
-     * Start a new game with the given arrtibutes
+     * Start a new game with the given arrtibutes.
      * 
      * @param width   the width of the game to create
      * @param height  the height of the game to create
@@ -116,7 +114,7 @@ public class Game implements Serializable {
      * Start a new game of a specified game type.
      * Note that CUSTOM type will create a HARD hame instead.
      * 
-     * @param gameType  the typoe of game to create
+     * @param gameType  the type of game to create
      */
     public void newGame(GameType gameType) {
         gameGrid = new GameGrid(gameType);
@@ -134,32 +132,31 @@ public class Game implements Serializable {
         } else {
             newGame(gameGrid.getGameType());
         }
-        store();
     }
     
     /**
-     * @return  the width of the game grid
+     * @return  the width of the game grid.
      */
     public int gameWidth() {
         return gameGrid.getWidth();
     }
     
     /**
-     * @return  the height of the game grid
+     * @return  the height of the game grid.
      */
     public int gameHeight() {
         return gameGrid.getHeight();
     }
     
     /**
-     * @return  the number of tiles that need to be cleared
+     * @return  the number of tiles that need to be cleared.
      */
     public int getRemainingTiles() {
         return gameGrid.leftToClear();
     }
     
     /**
-     * Gets the value for the tile at the given coordinate
+     * Gets the value for the tile at the given coordinate.
      * 
      * @param coordinate  the coordinate to check
      * @return            integer value of the tile
@@ -172,14 +169,14 @@ public class Game implements Serializable {
     }
 
     /**
-     * @return number of actions performed during this game
+     * @return number of actions performed during this game.
      */
     public int getActionCount() {
         return actions;
     }
 
     /**
-     * Check if the tile at the given coordiante is flagged
+     * Check if the tile at the given coordiante is flagged.
      * 
      * @param coordinate  the coordinate to check
      * @return            true if the tile at the specified coordinate is flagged
@@ -189,7 +186,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Toggles the flag of the tile at the specified coordinate if possible
+     * Toggles the flag of the tile at the specified coordinate if possible.
      * 
      * @param coordinate  the coordinate of the tile to (de)flag
      */
@@ -212,7 +209,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Attempt to clear tiles around specified coordinate
+     * Attempt to clear tiles around specified coordinate.
      * 
      * @param coordinate  teh coordinate to clear around
      */
@@ -221,21 +218,22 @@ public class Game implements Serializable {
             return;
         }
         if (isChecked(coordinate)) {
-            gameGrid.clearSurrounding(coordinate);
+            boolean result = gameGrid.clearSurroundingNonFlagged(coordinate);
+            over = !result;
             actions++;
         }
         store();
     }
 
     /**
-     * Write current gameState to disk
+     * Write current gameState to disk.
      */
     private void store() {
         ObjectStorage.storeObject(this, "savegame.dat");
     }
     
     /**
-     * @return  the type of the current game
+     * @return  the type of the current game.
      */
     public GameType getGameType() {
         return gameGrid.getGameType();

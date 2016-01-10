@@ -91,14 +91,14 @@ public class Gui implements Runnable {
     }
 
     /**
-     * Reset all high scores
+     * Reset all high scores.
      */
     public void resetScores() {
         highScores.clear();
     }
 
     /**
-     * Create a new custom game with the attributes supplied by the player
+     * Create a new custom game with the attributes supplied by the player.
      */
     public void createCustomGame() {
         int width = getInt("Enter desired width of custom game, no promises though");
@@ -108,7 +108,7 @@ public class Gui implements Runnable {
     }
 
     /**
-     * prompt the user for integer input
+     * prompt the user for integer input.
      * 
      * @param prompt  the prompt to display in the dialog
      * @return        an integer
@@ -119,5 +119,9 @@ public class Gui implements Runnable {
         } catch (Exception e) {
             return -1;
         }
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

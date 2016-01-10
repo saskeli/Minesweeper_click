@@ -6,9 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * This class contains methods for writing and reading serializable objects
+ * This class contains methods for writing and reading serializable objects.
  * 
- * @author dongesa
+ * @author Saskeli
  */
 public final class ObjectStorage {
 
@@ -17,9 +17,9 @@ public final class ObjectStorage {
     /**
      * Writes a serializable object to disk.
      * 
-     * @param storable  Object to be stored
-     * @param fileName  Object will be stored in ./data/fileName
-     * @return  True if successful, otherwise false
+     * @param storable  the object to be stored
+     * @param fileName  the object will be stored in ./data/fileName
+     * @return          true if successful, otherwise false
      */
     public static boolean storeObject(Serializable storable, String fileName) {
         Path p = Paths.get(".", "data");
@@ -41,10 +41,10 @@ public final class ObjectStorage {
     }
     
     /**
-     * Reads a serializable object from disk
+     * Reads a serializable object from disk.
      * 
-     * @param fileName  Object will be read from ./data/fileName
-     * @return  Serializable object if successful, otherwise null
+     * @param fileName  the object will be read from ./data/fileName
+     * @return          a serializable object if successful, otherwise null
      */
     public static Serializable retrieveObject(String fileName) {
         Path p = Paths.get(".", "data", fileName);

@@ -13,12 +13,12 @@ import minesweeper.util.*;
 public class Main {
 
     /**
-     * Starts the Minesweeper GUI. Using a stored game state is available
+     * Starts the Minesweeper GUI. Using a stored game state is available.
      * 
-     * @param args can't currently be used with arguments
+     * @param args  can't currently be used with arguments
      */
     public static void main(String[] args) {
-        if (args.length == 0) {
+        try {
             Serializable object = ObjectStorage.retrieveObject("savegame.dat");
             Game g;
             if (object != null) {
@@ -27,6 +27,8 @@ public class Main {
                 g = new Game(GameType.NORMAL);
             }
             SwingUtilities.invokeLater(new Gui(g));
+        } catch (Exception e) { 
+            System.out.println("terminating due to unexpected exception");
         }
     }
 }

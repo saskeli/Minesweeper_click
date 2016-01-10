@@ -3,6 +3,7 @@ package logic;
 import minesweeper.util.Coordinate;
 import minesweeper.logic.*;
 import java.util.*;
+import minesweeper.util.GameType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -299,7 +300,8 @@ public class GameGridTest {
     
     @Test
     public void invalidCoordIsInvalid() {
-        assertEquals(false, randomGameGrid.isValid(new Coordinate(16, 30)));
+        assertEquals(false, randomGameGrid.isValid(new Coordinate(16, 29)));
+        assertEquals(false, randomGameGrid.isValid(new Coordinate(15, 30)));
     }
     
     @Test
@@ -337,5 +339,87 @@ public class GameGridTest {
     public void flagToggle() {
         smallInjectedGridOne.toggleFlag(new Coordinate(0, 1));
         assertEquals(true, smallInjectedGridOne.isFlagged(new Coordinate(0, 1)));
+    }
+    
+    @Test
+    public void easyConstructor() {
+        GameGrid gg = new GameGrid(GameType.EASY);
+        assertEquals(GameType.EASY, gg.getGameType());
+        assertEquals(10, gg.getMines());
+        assertEquals(9, gg.getHeight());
+        assertEquals(9, gg.getWidth());
+    }
+    
+    @Test
+    public void normalConstructor() {
+        GameGrid gg = new GameGrid(GameType.NORMAL);
+        assertEquals(GameType.NORMAL, gg.getGameType());
+        assertEquals(40, gg.getMines());
+        assertEquals(16, gg.getHeight());
+        assertEquals(16, gg.getWidth());
+    }
+    
+    @Test
+    public void hardConstructor() {
+        GameGrid gg = new GameGrid(GameType.HARD);
+        assertEquals(GameType.HARD, gg.getGameType());
+        assertEquals(99, gg.getMines());
+        assertEquals(16, gg.getHeight());
+        assertEquals(30, gg.getWidth());
+    }
+    
+    @Test
+    public void customConstructor() {
+        GameGrid gg = new GameGrid(GameType.HARD);
+        assertEquals(GameType.HARD, gg.getGameType());
+        assertEquals(99, gg.getMines());
+        assertEquals(16, gg.getHeight());
+        assertEquals(30, gg.getWidth());
+    }
+    
+    @Test
+    public void flaggedDoesNotClear() {
+        Coordinate c = new Coordinate(0, 0);
+        smallInjectedGridTwo.toggleFlag(c);
+        assertEquals(true, smallInjectedGridTwo.isFlagged(c));
+        assertEquals(true, smallInjectedGridTwo.clear(c));
+        assertEquals(false, smallInjectedGridTwo.isCleared(c));
+    }
+    
+    @Test
+    public void cantFlagCleared() {
+        Coordinate c = new Coordinate(0, 0);
+        smallInjectedGridOne.toggleFlag(c);
+        assertEquals(false, smallInjectedGridOne.isFlagged(c));
+    }
+    
+    @Test
+    public void flagCount() {
+        smallInjectedGridOne.toggleFlag(new Coordinate(0, 1));
+        smallInjectedGridOne.toggleFlag(new Coordinate(1, 1));
+        assertEquals(2, smallInjectedGridOne.surroundingFlags(new Coordinate(0, 0)));
+    }
+    
+    @Test
+    public void clearNonFlagged() {
+        smallInjectedGridOne.toggleFlag(new Coordinate(0, 1));
+        smallInjectedGridOne.toggleFlag(new Coordinate(1, 1));
+        assertEquals(true, smallInjectedGridOne.clearSurroundingNonFlagged(new Coordinate(0, 0)));
+        assertEquals(true, smallInjectedGridOne.isCleared(new Coordinate(1, 0)));
+    }
+    
+    @Test
+    public void noClearIfWrongFlagcont() {
+        smallInjectedGridOne.toggleFlag(new Coordinate(0, 1));
+        assertEquals(true, smallInjectedGridOne.clearSurroundingNonFlagged(new Coordinate(0, 0)));
+        assertEquals(false, smallInjectedGridOne.isCleared(new Coordinate(1, 0)));
+    }
+    
+    @Test
+    public void gameOverIfWrongFlags() {
+        smallInjectedGridOne.toggleFlag(new Coordinate(0, 1));
+        smallInjectedGridOne.toggleFlag(new Coordinate(1, 0));
+        assertEquals(false, smallInjectedGridOne.clearSurroundingNonFlagged(new Coordinate(0, 0)));
+        assertEquals(true, smallInjectedGridOne.isCleared(new Coordinate(1, 1)));
     }
 }

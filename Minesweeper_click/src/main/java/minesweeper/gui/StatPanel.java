@@ -13,11 +13,11 @@ import minesweeper.eventhandlers.ButtonActionListener;
  */
 public class StatPanel extends JPanel {
     /**
-     * Label that tracks number of actions
+     * Label that tracks number of actions.
      */
     private final JLabel clickCountLabel;
     /**
-     * Lable that tracks number of tiles to clear
+     * Lable that tracks number of tiles to clear.
      */
     private final JLabel toClearLabel;
     
@@ -25,13 +25,14 @@ public class StatPanel extends JPanel {
      * Panel for the minwsweeper GUI that shows stats and provides the 
      * new game button.
      * 
-     * @param buttonActionListener the action listener for the new game button
+     * @param buttonActionListener  the action listener for the new game button
      */
     public StatPanel(ButtonActionListener buttonActionListener) {
         Dimension d = new Dimension(40, 10);
         
         toClearLabel = new JLabel("-1", JLabel.CENTER);
         toClearLabel.setPreferredSize(d);
+        toClearLabel.setName("toClearLabel");
         add(toClearLabel, BorderLayout.WEST);
         
         JButton reStartButton = new JButton("New game");
@@ -45,7 +46,7 @@ public class StatPanel extends JPanel {
     }
 
     /**
-     * Update the action label with the given number
+     * Update the action label with the given number.
      * 
      * @param actionCount  the action count to display
      */
@@ -54,7 +55,7 @@ public class StatPanel extends JPanel {
     }
 
     /**
-     * Update the remaining tiles count with the given number
+     * Update the remaining tiles count with the given number.
      * 
      * @param remainingTiles  the tile coint to display
      */

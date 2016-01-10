@@ -8,17 +8,17 @@ import minesweeper.main.Game;
 import minesweeper.util.Coordinate;
 
 /**
- * Representation of a minesweeper square for GUI
+ * Representation of a minesweeper square for GUI.
  * 
  * @author Saskeli
  */
 public class Square extends JLabel {
     /**
-     * Game interface
+     * Game interface.
      */
     private final Game game;
     /**
-     * Coordinate of tile that this square represents
+     * Coordinate of tile that this square represents.
      */
     private final Coordinate coordinate;
     /**
@@ -28,7 +28,7 @@ public class Square extends JLabel {
     private final Color defaultColor;
 
     /**
-     * Representation of a minesweeper square for GUI
+     * Representation of a minesweeper square for GUI.
      * 
      * @param game        the game this square is tied to
      * @param coordinate  the game coordiante that this square represents
@@ -38,6 +38,7 @@ public class Square extends JLabel {
         super("");
         this.game = game;
         this.coordinate = coordinate;
+        setName(coordinate.getRow() + " " + coordinate.getColumn());
         addMouseListener(listener);
         setOpaque(true);
         setHorizontalAlignment(JLabel.CENTER);
@@ -55,7 +56,7 @@ public class Square extends JLabel {
     }
 
     /**
-     * Refresh the appearance of this Square
+     * Refresh the appearance of this Square.
      */
     public void update() {
         int tileState = game.getTileState(coordinate);

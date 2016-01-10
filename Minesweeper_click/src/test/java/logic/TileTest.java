@@ -95,4 +95,20 @@ public class TileTest {
         t.toggleFlag();
         assertEquals(false, t.isFlagged());
     }
+    
+    @Test
+    public void flagResetsWhenCleared() {
+        Tile t = new Tile(false, false, true);
+        assertEquals(true, t.isFlagged());
+        t.setChecked(true);
+        assertEquals(false, t.isFlagged());
+        t.setChecked(false);
+        assertEquals(false, t.isFlagged());
+    }
+    
+    @Test
+    public void flaggedToString() {
+        Tile t = new Tile(false, false, true);
+        assertEquals("1", t.toString());
+    }
 }

@@ -4,26 +4,26 @@ package minesweeper.logic;
 import java.io.Serializable;
 
 /**
- * Abstract representation of a minesweeper tile
+ * Abstract representation of a minesweeper tile.
  * 
  * @author Saskeli
  */
 public class Tile implements Serializable {
     /**
-     * whether this tile has a mine
+     * whether this tile has a mine.
      */
     private boolean mine;
     /**
-     * whether this tile has been checked
+     * whether this tile has been checked.
      */
     private boolean checked;
     /**
-     * whether this tile has been flagged
+     * whether this tile has been flagged.
      */
     private boolean flagged;
 
     /**
-     * Abstract representation of a minesweeper tile
+     * Abstract representation of a minesweeper tile.
      * 
      * @param mine     whether this tile has a mine
      * @param checked  whether this tile is checked
@@ -33,7 +33,7 @@ public class Tile implements Serializable {
     }
 
     /**
-     * Abstract representation of a minesweeper tile
+     * Abstract representation of a minesweeper tile.
      * 
      * @param mine     whether this tile has a mine
      * @param checked  whether this tile is checked
@@ -59,7 +59,7 @@ public class Tile implements Serializable {
 
     /**
      * Set the checked attribute of the tile.
-     * If checked is set to true, flagged will be set to false
+     * If checked is set to true, flagged will be set to false.
      * 
      * @param checked  whether this Tile is set to checked or unchecked
      */
@@ -92,7 +92,7 @@ public class Tile implements Serializable {
     }
 
     /**
-     * Toggles the flagged attribute of this Tile
+     * Toggles the flagged attribute of this Tile.
      */
     public void toggleFlag() {
         this.flagged = !this.flagged;

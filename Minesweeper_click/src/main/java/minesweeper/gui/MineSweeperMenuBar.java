@@ -6,14 +6,14 @@ import javax.swing.*;
 import minesweeper.eventhandlers.ButtonActionListener;
 
 /**
- * Menu bar for minesweeper_click
+ * Menu bar for minesweeper_click.
  * 
  * @author dongesa
  */
 class MineSweeperMenuBar extends JMenuBar {
     
     /**
-     * Menu bar for minesweeper_click
+     * Menu bar for minesweeper_click.
      * 
      * @param buttonActionListener  the action listener to use for menu buttons
      */
@@ -23,7 +23,7 @@ class MineSweeperMenuBar extends JMenuBar {
     }
 
     /**
-     * Create the new game menu
+     * Create the new game menu.
      * 
      * @param buttonActionListener  the action listener to use for menu buttons
      * @return                      the new game menu
@@ -40,7 +40,7 @@ class MineSweeperMenuBar extends JMenuBar {
     }
 
     /**
-     * Create the high score menu
+     * Create the high score menu.
      * 
      * @param buttonActionListener  the action listener to use for menu buttons
      * @return                      the high score menu
@@ -55,7 +55,7 @@ class MineSweeperMenuBar extends JMenuBar {
     }
     
     /**
-     * Create a JMenuItem
+     * Create a JMenuItem.
      * 
      * @param text                  the button text
      * @param mnemonic              the hotkey for the button
@@ -68,6 +68,7 @@ class MineSweeperMenuBar extends JMenuBar {
         JMenuItem item = new JMenuItem(text, mnemonic);
         item.setName(name);
         item.getAccessibleContext().setAccessibleDescription(tooltip);
+        item.setToolTipText(tooltip);
         item.addActionListener(buttonActionListener);
         return item;
     }

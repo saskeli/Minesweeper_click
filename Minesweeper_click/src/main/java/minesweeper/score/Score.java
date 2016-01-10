@@ -4,26 +4,26 @@ import java.io.Serializable;
 import minesweeper.util.GameType;
 
 /**
- * Score class that represents the score of a cleared minesweeper game
+ * Score class that represents the score of a cleared minesweeper game.
  * 
  * @author dongesa
  */
-class Score implements Serializable {
+public class Score implements Serializable {
     /**
-     * the alias for the clearer
+     * the alias for the clearer.
      */
     private final String name;
     /**
-     * number of actions to clear
+     * number of actions to clear.
      */
     private final int actions;
     /**
-     * type of game cleared
+     * type of game cleared.
      */
     private final GameType gameType;
 
     /**
-     * Score class that represents the score of a cleared minesweeper game
+     * Score class that represents the score of a cleared minesweeper game.
      * 
      * @param name     the alias for the clearer
      * @param actions  number of actions to clear
