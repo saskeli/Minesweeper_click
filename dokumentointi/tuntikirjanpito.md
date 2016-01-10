@@ -43,7 +43,7 @@ pvm        | aika | kohde |
 2016-01-06 | 7h   | Aihemäärittelyn mukainen toiminnallisuus tehty. Alustavat javadocit tehty. Sekevnssikaaviot tehty. Luokkakaaviot päivitetty|
 2016-01-06 | 1h   | Koodikatselmointi 2 |
 
-## Deadline 5
+## Deadline 6
 pvm        | aika | kohde |
 -----------|------|-------|
 2016-01-10 | 8h   | Testausta, dokumentaatiota, uudet raportit, jar tiedosto |
